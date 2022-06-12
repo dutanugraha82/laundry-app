@@ -12,6 +12,10 @@ class DataLaundryController extends Controller
         return view('data.data-pending', compact('dataMasuk'));
     }
 
+    public function dashboard() {
+        return view('dashboard/dashboard');
+    }
+
     public function insert(){
         return view('input-data');
     }
@@ -19,8 +23,9 @@ class DataLaundryController extends Controller
 
 
     public function store(Request $request){
-       $request->validate([
-        'nama' => 'required',
+        // dd($request);
+       $validateData = $request->validate([
+        'nama' => 'required|max:255',
         'berat' => 'required',
         'jenis' => 'required',
         'tanggal' => 'required',

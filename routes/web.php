@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/','index');
+    Route::get('/dashboard', 'dashboard');
     Route::get('/input-data','insert');
     Route::post('/', 'store');
     Route::get('/detail/{data_id}','detail');

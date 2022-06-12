@@ -12,7 +12,6 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- Paper Css -->
-  @stack('paper_css')
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -41,9 +40,20 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
-            {{-- Data Laundry Start --}}
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">        
+
+          {{-- Data Laundry Start --}}
+          <li class="nav-item">
+            <a href="/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          {{-- Data Laundry End --}}
+
+          {{-- Data Laundry Start --}}
           <li class="nav-item">
             <a href="/input-data" class="nav-link">
               <i class="nav-icon fas fa-download"></i>
@@ -52,7 +62,6 @@
               </p>
             </a>
           </li>
-
           {{-- Data Laundry End --}}
 
           {{-- Pemesanan Start --}}

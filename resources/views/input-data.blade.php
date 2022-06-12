@@ -6,25 +6,37 @@
         </div>
         <div class="card-body">
         <form action="/" method="POST">
-            @csrf
+        @csrf
         <div class="container my-3">
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
                         <label for="nama">Nama Customer</label>
-                        <input type="text" class="form-control" name="nama" id="nama" required autofocus>
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ old('nama') }}" autofocus>
+                        @error('nama')
+                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                        @enderror
                      </div>
                      <div class="mb-3">
                         <label for="berat">Berat</label>
-                        <input type="text" name="berat" class="form-control" id="berat" required>
+                        <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat">
+                        @error('berat')
+                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                        @enderror
                      </div>
                      <div class="mb-3">
                         <label for="tanggal">Tanggal</label>
-                        <input type="date" name="tanggal" class="form-control" id="tanggal" required>
+                        <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal">
+                        @error('tanggal')
+                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                        @enderror
                      </div>
                      <div class="mb-3">
                         <label for="harga">Total Harga</label>
-                        <input type="text" name="total" class="form-control">
+                        <input type="text" name="total" class="form-control @error('total') is-invalid @enderror">
+                        @error('total')
+                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                        @enderror
                      </div>
                 </div>
                 <div class="col">
