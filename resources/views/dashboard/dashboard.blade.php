@@ -12,7 +12,7 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3>150</h3>
-              <p>Data Masuk</p>
+              <p>Data laundry masuk</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
@@ -26,7 +26,7 @@
           <div class="small-box bg-danger">
             <div class="inner">
               <h3>150</h3>
-              <p>Data Keluar</p>
+              <p>Data laundry keluar</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>

@@ -23,8 +23,7 @@ class DataLaundryController extends Controller
 
 
     public function store(Request $request){
-        // dd($request);
-       $validateData = $request->validate([
+        $request->validate([
         'nama' => 'required|max:255',
         'berat' => 'required',
         'jenis' => 'required',
@@ -42,7 +41,7 @@ class DataLaundryController extends Controller
             'jasa' => $request->jasa,
             'total' => $request->total,
        ]);
-       return redirect('/');
+       return redirect('/data-masuk');
     }
 
     public function detail($id){

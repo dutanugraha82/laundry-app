@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <h3>Laporan Data Pending</h3>
+    <h3>Laporan Data Masuk (Pending)</h3>
       <div class="card-tools">
         <div class="input-group input-group-sm" style="width: 150px;">
         </div>
@@ -29,12 +29,12 @@
             <td>{{ $item->berat }}</td>
             <td>{{ $item->jenis }}</td>
             <td class="text-center">
-                <form action="#">
+                <!-- <form action="#"> -->
                 <a href="/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
                 <a href="#" class="btn btn-warning">Edit</a>
                    
                     <input type="submit" class="btn btn-danger" value="Delete">
-                </form>
+                <!-- </form> -->
             </td>
             <td>
                 <a href="#" class="btn btn-primary">Cetak Struk</a>

@@ -5,7 +5,7 @@
             <h3>Input Data Laundry</h3>
         </div>
         <div class="card-body">
-        <form action="/" method="POST">
+        <form action="/input-data" method="POST">
         @csrf
         <div class="container my-3">
             <div class="row">
