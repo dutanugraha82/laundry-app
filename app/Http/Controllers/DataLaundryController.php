@@ -41,7 +41,7 @@ class DataLaundryController extends Controller
             'jasa' => $request->jasa,
             'total' => $request->total,
        ]);
-       return redirect('/data-masuk');
+       return redirect('/list-data-laundry/data-pending');
     }
 
     public function detail($id){

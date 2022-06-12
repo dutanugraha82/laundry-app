@@ -12,7 +12,7 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3>150</h3>
-              <p>Data laundry masuk</p>
+              <p>Data laundry Pnding</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>

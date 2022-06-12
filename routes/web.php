@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(DataLaundryController::class)->group(function(){
-    
+
     // Route Dahsboard
     Route::redirect('/', '/dashboard');
     Route::get('/dashboard','dashboard');
 
     // Route Data Masuk
-    Route::get('/data-masuk','index');
+    Route::get('/list-data-laundry/data-pending','index');
 
     // Route Input Data
     Route::get('/input-data','insert');

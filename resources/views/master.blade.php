@@ -44,7 +44,7 @@
 
           {{-- Data Laundry Start --}}
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
+            <a href="/dashboard" class="nav-link  @if ( Request::segment(1) == 'dashboard' ) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -55,7 +55,7 @@
 
           {{-- Data Laundry Start --}}
           <li class="nav-item">
-            <a href="/input-data" class="nav-link">
+            <a href="/input-data" class="nav-link @if (Request::segment(1) == 'input-data') active @endif" >
               <i class="nav-icon fas fa-download"></i>
               <p>
                 Input Data Laundry
@@ -67,7 +67,7 @@
           {{-- Pemesanan Start --}}
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 List Data Laundry
@@ -76,13 +76,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/data-masuk" class="nav-link">
+                <a href="/list-data-laundry/data-pending" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Pending</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/data-selesai" class="nav-link">
+                <a href="/data-selesai" class="nav-link @if (Request::segment(1) == 'data-selesai') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Selesai</p>
                 </a>
@@ -93,7 +93,7 @@
 
           {{-- Pembukuan Start --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @if (Request::segment(1) == '#') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Laporan Data Laundry
@@ -102,7 +102,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/laporan-barang-masuk" class="nav-link">
+                <a href="/laporan-barang-masuk" class="nav-link @if (Request::segment(1) == 'laporan-barang-masuk') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Data Harian</p>
                 </a>
@@ -110,7 +110,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/laporan-barang-keluar" class="nav-link">
+                <a href="/laporan-barang-keluar" class="nav-link @if (Request::segment(1) == 'laporan-barang-keluar') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Data Bulanan</p>
                 </a>

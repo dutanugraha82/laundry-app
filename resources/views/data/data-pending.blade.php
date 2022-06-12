@@ -2,7 +2,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <h3>Laporan Data Masuk (Pending)</h3>
+    <h3>Laporan Data Pending</h3>
       <div class="card-tools">
         <div class="input-group input-group-sm" style="width: 150px;">
         </div>
