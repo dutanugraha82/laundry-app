@@ -6,8 +6,8 @@
             <h3>Detail Data Laundry</h3>
         </div>
         <div class="card-body">
-        <form action="/" method="POST">
-            @csrf
+        <form action="/list-data-laundry/proses/detail/{id}/updated" method="POST">
+        @csrf
         <div class="container my-3">
             <div class="row">
                 <div class="col">
@@ -42,9 +42,16 @@
             <div class="mb-3 mx-auto">
                 <label for="harga">Total Harga</label>
                 <input type="text" name="total" class="form-control" value="Rp {{ $detail->total }}" disabled>
-             </div>
+                <input type="text" name="total" class="form-control" value="{{ $detail->total }}" hidden>
+            </div>
+            <div class="mb-3 mx-auto">
+                <label for="bayar">Bayar</label>
+                <input type="text" name="bayar" class="form-control">
+            </div>
             <div class="my-3 text-center">
-                <button type="submit" class="btn btn-success mx-2" style="width: 8rem"><b>Bayar</b></button>
+                @if($detail->status_pembayaran == 'Belum Lunas')
+                    <button type="submit" class="btn btn-success mx-2" style="width: 8rem"><b>Bayar</b></button>
+                @endif
                 <a href="#" class="btn btn-warning mx-3" style="width: 8rem"><b>Simpan</b></a>
             </div>
             </div>

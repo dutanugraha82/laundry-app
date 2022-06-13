@@ -82,4 +82,15 @@ class DataLaundryController extends Controller
         return view('data.detail', compact('detail'));
     }
 
+    // Update status pembayaran ketika customer bayar
+    public function update_statusPembayaran(Request $request, $id) {
+        dd($id);
+        
+        if($request->total === $request->bayar) {
+            $update = DB::table('data')
+                    ->where('id',$id)
+                    ->update(['status_pembayaran' => 'lunas']);
+
+        }
+    }
 }

@@ -33,6 +33,10 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/input-data-laundry','insert');
     Route::post('/input-data-laundry', 'store');
 
+    
     // Route Detail Data pending
-    Route::get('/list-data-laundry/proses/detail/{data_id}','detail');
+    Route::get('/list-data-laundry/proses/detail/{id}','detail');
+
+    // Data updated status pembayaran
+    Route::post('/list-data-laundry/proses/detail/{id}/updated','update_statusPembayaran');
 });
