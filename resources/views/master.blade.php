@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard</title>
+  <title>{{ config('app.name') }} - @yield('titletab')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,7 +34,6 @@
     <a href="#" class="brand-link">
       <span class="brand-text font-weight-light">Hello Admin!</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
 
@@ -42,56 +41,81 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">        
 
-          {{-- Data Laundry Start --}}
+          {{-- Section Dahsboard Start --}}
           <li class="nav-item">
             <a href="/dashboard" class="nav-link  @if ( Request::segment(1) == 'dashboard' ) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-th-large"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          {{-- Data Laundry End --}}
+          {{-- Section Dashboard End --}}
 
-          {{-- Data Laundry Start --}}
+          {{-- Section Input Data Start --}}
           <li class="nav-item">
-            <a href="/input-data" class="nav-link @if (Request::segment(1) == 'input-data') active @endif" >
-              <i class="nav-icon fas fa-download"></i>
+            <a href="/input-data-laundry" class="nav-link  @if ( Request::segment(1) == 'input-data-laundry') active @endif">
+              <i class="nav-icon fas fa-th-large"></i>
               <p>
                 Input Data Laundry
               </p>
             </a>
           </li>
-          {{-- Data Laundry End --}}
+          {{-- Section Input Data End --}}
 
-          {{-- Pemesanan Start --}}
-
+          {{--  Section Data transaksi Start --}}
           <li class="nav-item">
-            <a href="#" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
+            <a href="#" class="nav-link @if (Request::segment(1) == 'list-data-transaksi') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                List Data Laundry
+                Data Transaksi
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/list-data-laundry/data-pending" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
+                <a href="/list-data-transaksi/masuk" class="nav-link @if (Request::segment(2) == 'masuk') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Pending</p>
+                  <p>Transaksi Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/data-selesai" class="nav-link @if (Request::segment(1) == 'data-selesai') active @endif">
+                <a href="/list-data-transaksi/keluar" class="nav-link @if (Request::segment(2) == 'keluar') active @endif">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Selesai</p>
+                  <p>Transaksi Keluar</p>
                 </a>
               </li>
             </ul>
           </li>
-          {{-- Pemesanan End --}}
+          {{-- Section Data Transaksi End --}}
 
-          {{-- Pembukuan Start --}}
+          <!-- {{-- Section Data Laundry Start --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Data Laundry
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/list-data-laundry/proses" class="nav-link @if (Request::segment(2) == 'proses') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Laundry Proses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/list-data-laundry/selesai" class="nav-link @if (Request::segment(2) == 'selesai') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Laundry Selesai</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- Section Data Laundry End --}} -->
+
+          {{-- Section Laporan Start --}}
           <li class="nav-item">
             <a href="#" class="nav-link @if (Request::segment(1) == '#') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -102,7 +126,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/laporan-barang-masuk" class="nav-link @if (Request::segment(1) == 'laporan-barang-masuk') active @endif">
+                <a href="#" class="nav-link @if (Request::segment(2) == 'laporan-barang-masuk') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Data Harian</p>
                 </a>
@@ -110,14 +134,26 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/laporan-barang-keluar" class="nav-link @if (Request::segment(1) == 'laporan-barang-keluar') active @endif">
+                <a href="#" class="nav-link @if (Request::segment(2) == 'laporan-barang-keluar') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Data Bulanan</p>
                 </a>
               </li>
             </ul>
           </li>
-          {{-- Pembukuan End --}}
+          {{--  Section Laporan End --}}
+          
+          {{-- Section Trash Start --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link  @if ( Request::segment(1) == 'sampah' ) active @endif">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Sampah
+              </p>
+            </a>
+          </li>
+          {{-- Section Trash End --}}
+
           <li class="mx-auto mt-3">
             <a href="/logout" class="btn btn-warning text-dark text-center" style="width: 200px"><b>Logout</b></a>
         </li>

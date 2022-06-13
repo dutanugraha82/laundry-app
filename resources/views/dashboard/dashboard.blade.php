@@ -1,4 +1,5 @@
 @extends('master')
+@section('titletab','Dashboard')
 @section('content')
   <div class="card">
     <div class="card-header">
@@ -12,12 +13,12 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3>150</h3>
-              <p>Data laundry Pnding</p>
+              <p>Data laundry pending</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="/list-data-laundry/data-pending" class="small-box-footer">
             More info <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -31,7 +32,7 @@
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="/data-selesai" class="small-box-footer">
             More info <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>

@@ -22,6 +22,8 @@ class CreateDataTable extends Migration
             $table->string('tanggal');
             $table->string('jasa');
             $table->string('total');
+            $table->string('status');
+            $table->string('status_pembayaran');
             $table->timestamps();
         });
     }

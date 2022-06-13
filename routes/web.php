@@ -19,15 +19,20 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Route Dahsboard
     Route::redirect('/', '/dashboard');
-    Route::get('/dashboard','dashboard');
+    Route::get('/dashboard','index');
 
-    // Route Data Masuk
-    Route::get('/list-data-laundry/data-pending','index');
+    // Route Data Transaksi
+    Route::get('/list-data-transaksi/masuk','transaksi_masuk');
+    Route::get('/list-data-transaksi/keluar','transaksi_keluar');
+
+    // Route Data Laundry
+    // Route::get('/list-data-laundry/proses','laundry_proses');
+    // Route::get('/list-data-laundry/selesai','laundry_selesai');
 
     // Route Input Data
-    Route::get('/input-data','insert');
-    Route::post('/input-data', 'store');
+    Route::get('/input-data-laundry','insert');
+    Route::post('/input-data-laundry', 'store');
 
     // Route Detail Data pending
-    Route::get('/detail/{data_id}','detail');
+    Route::get('/list-data-laundry/proses/detail/{data_id}','detail');
 });

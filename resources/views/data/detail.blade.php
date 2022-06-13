@@ -1,4 +1,5 @@
 @extends('master')
+@section('titletab','Detail')
 @section('content')
     <div class="card">
         <div class="card-header">
