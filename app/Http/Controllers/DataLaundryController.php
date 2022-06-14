@@ -17,7 +17,7 @@ class DataLaundryController extends Controller
     //     $dataProses = DB::table('data')
     //                     ->where('status','proses')
     //                     ->get();
-    //     return view('data.data-proses', compact('dataProses'));
+    //     return view('laundry.laundry-proses', compact('dataProses'));
     // }
 
     // // Get data where status laundry selesai & status_pembayaran selesai
@@ -73,7 +73,7 @@ class DataLaundryController extends Controller
             'status' => 'Proses',
             'status_pembayaran' => 'Belum Lunas'
        ]);
-       return redirect('/list-data-laundry/proses');
+       return redirect('/list-data-transaksi/masuk');
     }
 
     // View detail customer
@@ -84,7 +84,7 @@ class DataLaundryController extends Controller
 
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
-        dd($id);
+        dd($request);
         
         if($request->total === $request->bayar) {
             $update = DB::table('data')
@@ -92,5 +92,6 @@ class DataLaundryController extends Controller
                     ->update(['status_pembayaran' => 'lunas']);
 
         }
+        // return redirect('/');
     }
 }

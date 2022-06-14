@@ -18,7 +18,7 @@
             <th>No Hp</th>
             <th>Kuantitas</th>
             <th>Jenis Laundry</th>
-            <th>Status</th>
+            <th>Status Laundry</th>
             <th>Status Pembayaran</th>
             <th class="text-center">Aksi</th>
             <th>Cetak Struk</th>

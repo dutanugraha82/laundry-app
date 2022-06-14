@@ -89,8 +89,8 @@
           </li>
           {{-- Section Data Transaksi End --}}
 
-          <!-- {{-- Section Data Laundry Start --}}
-          <li class="nav-item">
+       {{-- <-SectionDataLaundryStart --}}
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link @if (Request::segment(1) == 'list-data-laundry') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -112,8 +112,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          {{-- Section Data Laundry End --}} -->
+          </li> --}}
+          {{-- Section Data Laundry End --}}
 
           {{-- Section Laporan Start --}}
           <li class="nav-item">
