@@ -1,13 +1,19 @@
 @extends('master')
 @section('titletab','Detail')
-@section('content')
+@section('content')  
     <div class="card">
         <div class="card-header">
             <h3>Detail Data Laundry</h3>
         </div>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="card-body">
-        <form action="/list-data-laundry/proses/detail/{id}/updated" method="POST">
+        <form action="/list-data-laundry/proses/detail/{{ $detail->id }}" method="POST">
         @csrf
+        @method('put')
         <div class="container my-3">
             <div class="row">
                 <div class="col">
@@ -44,15 +50,21 @@
                 <input type="text" name="total" class="form-control" value="Rp {{ $detail->total }}" disabled>
                 <input type="text" name="total" class="form-control" value="{{ $detail->total }}" hidden>
             </div>
-            <div class="mb-3 mx-auto">
-                <label for="bayar">Bayar</label>
-                <input type="text" name="bayar" class="form-control">
-            </div>
+            @if($detail->status_pembayaran == 'belum lunas')
+                
+                    <label for="bayar">Bayar</label>
+                    <input type="text" name="bayar" class="form-control">
+                </div>
+            @else
+                <div class="mb-3 mx-auto">
+                    <h1 class="text-success text-center">LUNAS</h1>
+                </div>
+            @endif
             <div class="my-3 text-center">
-                @if($detail->status_pembayaran == 'Belum Lunas')
+                @if($detail->status_pembayaran == 'belum lunas')
                     <button type="submit" class="btn btn-success mx-2" style="width: 8rem"><b>Bayar</b></button>
                 @endif
-                <a href="#" class="btn btn-warning mx-3" style="width: 8rem"><b>Simpan</b></a>
+                <!-- <a href="#" class="btn btn-warning mx-3" style="width: 8rem"><b>Simpan</b></a> -->
             </div>
             </div>
         </form>

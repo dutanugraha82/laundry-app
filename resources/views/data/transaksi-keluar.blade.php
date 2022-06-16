@@ -31,8 +31,8 @@
             <td>{{ $item->nohp }}</td>
             <td>{{ $item->berat }}</td>
             <td>{{ $item->jenis }}</td>
-            <td class=" @if ($item->status == 'Selesai') text-success @else text-success @endif">{{ $item->status }}</td>
-            <td class=" @if ($item->status_pembayaran == 'Lunas') text-success @else text-success @endif">{{ $item->status_pembayaran }}</td>            
+            <td class=" @if ($item->status == 'selesai') text-success @else text-success @endif">{{ $item->status }}</td>
+            <td class=" @if ($item->status_pembayaran == 'lunas') text-success @else text-success @endif">{{ $item->status_pembayaran }}</td>            
             <td class="text-center">
                 <!-- <form action="#"> -->
                 <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>

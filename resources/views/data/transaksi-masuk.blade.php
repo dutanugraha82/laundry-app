@@ -9,6 +9,11 @@
         </div>
       </div>
     </div>
+    @if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    @endif
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 300px;">
       <table class="table table-head-fixed text-nowrap">
@@ -31,15 +36,12 @@
             <td>{{ $item->nohp }}</td>
             <td>{{ $item->berat }}</td>
             <td>{{ $item->jenis }}</td>
-            <td class=" @if ($item->status == 'Proses') text-danger @endif">{{ $item->status }}</td>
-            <td class=" @if ($item->status_pembayaran == 'Belum Lunas') text-danger or  ($item->status_pembayaran == 'Lunas') text-success @endif">{{ $item->status_pembayaran }}</td>            
+            <td class=" @if ($item->status == 'proses') text-danger @endif">{{ $item->status }}</td>
+            <td class=" @if ($item->status_pembayaran == 'belum lunas') text-danger @else text-success @endif">{{ $item->status_pembayaran }}</td>            
             <td class="text-center">
-                <!-- <form action="#"> -->
                 <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
                 <a href="#" class="btn btn-warning">Edit</a>
-                   
-                    <input type="submit" class="btn btn-danger" value="Delete">
-                <!-- </form> -->
+                <input type="submit" class="btn btn-danger" value="Delete">
             </td>
             <td>
                 <a href="#" class="btn btn-primary">Cetak Struk</a>
