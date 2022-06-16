@@ -45,9 +45,6 @@
             <td class=" @if ($item->status == 'proses') text-danger @endif">{{ $item->status }}</td>
             <td class=" @if ($item->status_pembayaran == 'belum lunas') text-danger @else text-success @endif">{{ $item->status_pembayaran }}</td>            
             <td class="text-center">
-                <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <input type="submit" class="btn btn-danger" value="Delete">
                 <form action="/data/{{ $item->id }}" method="POST">
                   @csrf
                   @method('delete')
