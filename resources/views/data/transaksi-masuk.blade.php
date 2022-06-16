@@ -54,7 +54,11 @@
             <td>{{ $item->jenis }}</td>
             <td class=" @if ($item->status == 'proses') text-danger @endif">{{ $item->status }}</td>
             <td class=" @if ($item->status_pembayaran == 'belum lunas') text-danger @else text-success @endif">{{ $item->status_pembayaran }}</td>            
+<<<<<<< HEAD
             <td class="text-center">               
+=======
+            <td class="text-center">
+>>>>>>> 9b4cac12c1584b4fdfc5e848932f83477d5ae75d
                 <form action="/data/{{ $item->id }}" method="POST">
                   @csrf
                   @method('delete')

@@ -70,6 +70,11 @@ class DataLaundryController extends Controller
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
 
+<<<<<<< HEAD
+=======
+        // dd($id);
+
+>>>>>>> 9b4cac12c1584b4fdfc5e848932f83477d5ae75d
         if($request->total <= $request->bayar) {
             
         $update = DB::table('data')
