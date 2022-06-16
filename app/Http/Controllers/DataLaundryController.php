@@ -54,10 +54,11 @@ class DataLaundryController extends Controller
             'tanggal' => $request->tanggal,
             'jasa' => $request->jasa,
             'total' => $request->total,
-            'status' => 'Proses',
-            'status_pembayaran' => 'Belum Lunas'
+            'status' => 'proses',
+            'status_pembayaran' => 'belum lunas'
        ]);
-       return redirect('/list-data-transaksi/masuk')->with('status', 'Data berhasil ditambahkan!');
+       
+       return redirect('/list-data-transaksi/masuk')->with('input_success', 'Data berhasil ditambahkan!');
     }
 
     // View detail customer
@@ -69,8 +70,6 @@ class DataLaundryController extends Controller
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
 
-        dd($id);
-
         if($request->total <= $request->bayar) {
             
         $update = DB::table('data')
@@ -78,9 +77,12 @@ class DataLaundryController extends Controller
                     ->update([
                         "status_pembayaran" => "lunas"
                     ]);
-        }      
+        }
+        else  {
+            return redirect('/list-data-transaksi/masuk')->with('error', 'Transaksi  gagal! (Pembayaran kurang)');
+        }
 
-        return redirect('/list-data-transaksi/masuk')->with('status', 'Transaksi  berhasil!');
+        return redirect('/list-data-transaksi/masuk')->with('transaksi_success', 'Transaksi  berhasil!');
     }
 
     public function edit($id){
@@ -108,7 +110,7 @@ class DataLaundryController extends Controller
             'total' => $request['total']
            ]);
 
-           return redirect('/list-data-transaksi/masuk')->with('pesan','Data berhasil dirubah!');
+           return redirect('/list-data-transaksi/masuk')->with('edit_success','Data berhasil dirubah!');
 
     }
 

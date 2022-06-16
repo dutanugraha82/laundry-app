@@ -2,11 +2,6 @@
 @section('titletab','Data Proses')
 @section('content')
 
-@if (session('pesan'))
-    <div class="alert laert-success">
-      {{ session('pesan') }}
-    </div>
-@endif
 <div class="card">
     <div class="card-header">
     <h3>Laporan Data Pending</h3>
@@ -15,9 +10,24 @@
         </div>
       </div>
     </div>
-    @if (session('status'))
+    @if (session('input_success'))
       <div class="alert alert-success">
-        {{ session('status') }}
+        {{ session('input_success') }}
+      </div>
+    @endif
+    @if (session('transaksi_success'))
+      <div class="alert alert-success">
+        {{ session('transaksi_success') }}
+      </div>
+    @endif
+    @if (session('error'))
+      <div class="alert alert-danger">
+        {{ session('error') }}
+      </div>
+    @endif
+    @if (session('edit_success'))
+      <div class="alert alert-success">
+        {{ session('edit_success') }}
       </div>
     @endif
     <!-- /.card-header -->
@@ -44,10 +54,7 @@
             <td>{{ $item->jenis }}</td>
             <td class=" @if ($item->status == 'proses') text-danger @endif">{{ $item->status }}</td>
             <td class=" @if ($item->status_pembayaran == 'belum lunas') text-danger @else text-success @endif">{{ $item->status_pembayaran }}</td>            
-            <td class="text-center">
-                <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <input type="submit" class="btn btn-danger" value="Delete">
+            <td class="text-center">               
                 <form action="/data/{{ $item->id }}" method="POST">
                   @csrf
                   @method('delete')
@@ -67,3 +74,22 @@
     <!-- /.card-body -->
   </div>
 @endsection
+
+{{-- @push('css')
+<link rel="stylesheet" href="sweetalert2.min.css">
+@endpush --}}
+
+{{--  @push('script_sweetalert')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+
+<script>
+  Swal.fire({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  icon: 'error',
+  confirmButtonText: 'Cool'
+})
+</script>
+@endpush --}}

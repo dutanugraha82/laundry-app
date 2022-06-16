@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="card-body">
-        <form action="/list-data-laundry/proses/detail/{{ $detail->id }}" method="POST">
+        <form action="/list-data-laundry/proses/detail/{{ $detail->id }}" method="POST">web
         @csrf
         @method('put')
         <div class="container my-3">
