@@ -1,6 +1,12 @@
 @extends('master')
 @section('titletab','Data Proses')
 @section('content')
+
+@if (session('pesan'))
+    <div class="alert laert-success">
+      {{ session('pesan') }}
+    </div>
+@endif
 <div class="card">
     <div class="card-header">
     <h3>Laporan Data Pending</h3>
@@ -42,6 +48,13 @@
                 <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
                 <a href="#" class="btn btn-warning">Edit</a>
                 <input type="submit" class="btn btn-danger" value="Delete">
+                <form action="/data/{{ $item->id }}" method="POST">
+                  @csrf
+                  @method('delete')
+                    <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-primary">Detail</a>
+                    <a href="/data/{{ $item->id }}/edit" class="btn btn-warning">Edit</a>
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
             </td>
             <td>
                 <a href="#" class="btn btn-primary">Cetak Struk</a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Whoops\Run;
 
 class DataLaundryController extends Controller
 {
@@ -80,5 +81,40 @@ class DataLaundryController extends Controller
         }      
 
         return redirect('/list-data-transaksi/masuk')->with('status', 'Transaksi  berhasil!');
+    }
+
+    public function edit($id){
+        $edit = DB::table('data')->where('id', $id)->first();
+        // dd($edit);
+        return view('data.edit', compact('edit'));
+    }
+
+    public function update($id,  Request $request){
+        $request->validate([
+            'nama' => 'required|max:255',
+            'berat' => 'required',
+            'jenis' => 'required',
+            'tanggal' => 'required',
+            'jasa' => 'required',
+            'total' => 'required',
+           ]);
+
+           DB::table('data')->where('id', $id)->update([
+            'nama' => $request['nama'],
+            'berat' => $request['berat'],
+            'jenis' => $request['jenis'],
+            'tanggal' => $request['tanggal'],
+            'jasa' => $request['jasa'],
+            'total' => $request['total']
+           ]);
+
+           return redirect('/list-data-transaksi/masuk')->with('pesan','Data berhasil dirubah!');
+
+    }
+
+    // Delete Data
+    public function delete($id){
+        DB::table('data')->where('id','=',$id)->delete();
+        return redirect('/list-data-transaksi/masuk'); //->with('pesan')
     }
 }
