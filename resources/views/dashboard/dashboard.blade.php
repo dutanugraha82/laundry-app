@@ -1,11 +1,11 @@
 @extends('master')
 @section('titletab','Dashboard')
 @section('content')
+<div class="container">
   <div class="card">
     <div class="card-header">
         <h3>Dashboard</h3>
     </div>
-
     <!-- Section Widget Data Masuk start -->
     <div class="card-body">
       <div class="row">
@@ -41,4 +41,5 @@
     </div>
     <!-- Section Widget Data Masuk End -->
   </div>
+</div>
 @endsection

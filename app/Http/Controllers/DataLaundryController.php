@@ -70,11 +70,6 @@ class DataLaundryController extends Controller
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
 
-<<<<<<< HEAD
-=======
-        // dd($id);
-
->>>>>>> 9b4cac12c1584b4fdfc5e848932f83477d5ae75d
         if($request->total <= $request->bayar) {
             
         $update = DB::table('data')
@@ -117,11 +112,12 @@ class DataLaundryController extends Controller
 
            return redirect('/list-data-transaksi/masuk')->with('edit_success','Data berhasil dirubah!');
 
-    }
+    }    
 
     // Delete Data
     public function delete($id){
         DB::table('data')->where('id','=',$id)->delete();
         return redirect('/list-data-transaksi/masuk'); //->with('pesan')
     }
+
 }

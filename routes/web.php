@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataLaundryController;
+use App\Http\Controllers\BinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +24,7 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Route Data Transaksi
     Route::get('/list-data-transaksi/masuk','transaksi_masuk');
-    Route::get('/list-data-transaksi/keluar','transaksi_keluar');
-
-    // Route Data Laundry
-    // Route::get('/list-data-laundry/proses','laundry_proses');
-    // Route::get('/list-data-laundry/selesai','laundry_selesai');
+    Route::get('/list-data-transaksi/keluar','transaksi_keluar');    
 
     // Route Input Data
     Route::get('/input-data-laundry','insert');
@@ -38,12 +35,7 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/list-data-laundry/proses/detail/{id}','detail');
 
     // Data updated status pembayaran
-<<<<<<< HEAD
-    Route::put('/list-data-laundry/proses/detail/{data_id}','update_statusPembayaran');
-=======
-
-    Route::put('/list-data-laundry/proses/detail/{data_id/updated}','update_statusPembayaran');
->>>>>>> 9b4cac12c1584b4fdfc5e848932f83477d5ae75d
+    Route::put('/list-data-laundry/proses/detail/{data_id/}','update_statusPembayaran');
 
     // Edit Data
     Route::get('/data/{data_id}/edit', 'edit');

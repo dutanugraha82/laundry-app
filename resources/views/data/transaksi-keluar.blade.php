@@ -1,12 +1,12 @@
 @extends('master')
 @section('titletab','Data Selesai')
 @section('content')
-<div class="card">
+<div class="container">
+  <div class="card">
     <div class="card-header">
-    <h3>Laporan Data Selesai</h3>
+      <h3>Laporan Data Selesai</h3>
       <div class="card-tools">
-        <div class="input-group input-group-sm" style="width: 150px;">
-        </div>
+        <div class="input-group input-group-sm" style="width: 150px;"></div>
       </div>
     </div>
     <!-- /.card-header -->
@@ -51,4 +51,5 @@
     </div>
     <!-- /.card-body -->
   </div>
+</div>
 @endsection

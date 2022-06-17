@@ -143,18 +143,7 @@
               </li>
             </ul>
           </li>
-          {{--  Section Laporan End --}}
-          
-          {{-- Section Trash Start --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link  @if ( Request::segment(1) == 'sampah' ) active @endif">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Sampah
-              </p>
-            </a>
-          </li>
-          {{-- Section Trash End --}}
+          {{--  Section Laporan End --}}                
 
           <li class="mx-auto mt-3">
             <a href="/logout" class="btn btn-warning text-dark text-center" style="width: 200px"><b>Logout</b></a>
