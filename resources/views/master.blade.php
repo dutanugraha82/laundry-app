@@ -190,7 +190,8 @@
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
-<!-- myscrit -->
-@stack('script_sweetalert')
+<!-- myscript -->
+@stack('script_swal')
+
 </body>
 </html>

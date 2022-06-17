@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Session;
 use Whoops\Run;
 
 class DataLaundryController extends Controller
@@ -58,7 +59,7 @@ class DataLaundryController extends Controller
             'status_pembayaran' => 'belum lunas'
        ]);
        
-       return redirect('/list-data-transaksi/masuk')->with('input_success', 'Data berhasil ditambahkan!');
+       return redirect('/list-data-transaksi/masuk')->with('sukses_input', 'Data berhasil ditambahkan!');
     }
 
     // View detail customer
@@ -79,10 +80,10 @@ class DataLaundryController extends Controller
                     ]);
         }
         else  {
-            return redirect('/list-data-transaksi/masuk')->with('error', 'Transaksi  gagal! (Pembayaran kurang)');
+            return redirect('/list-data-transaksi/masuk')->with('transaction_failed', 'Transaksi  gagal! (Pembayaran kurang)');
         }
 
-        return redirect('/list-data-transaksi/masuk')->with('transaksi_success', 'Transaksi  berhasil!');
+        return redirect('/list-data-transaksi/masuk')->with('transaction_success', 'Transaksi  berhasil!');
     }
 
     public function edit($id){
@@ -110,7 +111,7 @@ class DataLaundryController extends Controller
             'total' => $request['total']
            ]);
 
-           return redirect('/list-data-transaksi/masuk')->with('edit_success','Data berhasil dirubah!');
+           return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
 
     }    
 

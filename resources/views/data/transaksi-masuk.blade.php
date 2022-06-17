@@ -10,27 +10,7 @@
         <div class="input-group input-group-sm" style="width: 150px;">
         </div>
       </div>
-    </div>
-    @if (session('input_success'))
-      <div class="alert alert-success">
-        {{ session('input_success') }}
-      </div>
-    @endif
-    @if (session('transaksi_success'))
-      <div class="alert alert-success">
-        {{ session('transaksi_success') }}
-      </div>
-    @endif
-    @if (session('error'))
-      <div class="alert alert-danger">
-        {{ session('error') }}
-      </div>
-    @endif
-    @if (session('edit_success'))
-      <div class="alert alert-success">
-        {{ session('edit_success') }}
-      </div>
-    @endif
+    </div>  
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 300px;">
       <table class="table table-head-fixed text-nowrap">
@@ -80,27 +60,34 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
 @endsection
 
-@push('script_sweetalert')
+@push('script_swal')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    function confirmDelete(data_id) {
-               swal({
-                   title: "Delete customer?",
-                   text: "Data akan dihapus secara permanen!",
-                   icon: "warning",
-                   buttons: true,
-                   dangerMode: true,
-               })
-                   .then((willDelete) => {
-                       if (willDelete) {
-                           window.location.href = ("/data/"+data_id);
-                       } else {
-                           swal("Hapus Dibatalkan");
-                       }
-                   });
-           }
-   </script>
+  @if(Session::has('sukses_input'))
+  <script>
+      swal("Sukses!", "{{Session::get('sukses_input')}}", "success", {
+        button: "Ok",
+      });
+    </script>
+  @elseif(Session::has('transaction_failed'))
+  <script>
+      swal("Gagal!", "{{Session::get('transaction_failed')}}", "error", {
+        button: "Ok",
+      });
+    </script>
+  @elseif(Session::has('transaction_success'))
+  <script>
+      swal("Sukses!", "{{Session::get('transaction_success')}}", "success", {
+        button: "Ok",
+      });
+    </script>
+  @elseif(Session::has('update_success'))
+  <script>
+      swal("Sukses!", "{{Session::get('update_success')}}", "success", {
+        button: "Ok",
+      });
+    </script>
+  @endif
 @endpush
