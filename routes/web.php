@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DataLaundryController;
 use App\Http\Controllers\BinController;
+use App\Http\Controllers\SampahCT;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +44,8 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Delete Data
     Route::delete('/data/{data_id}', 'delete');
+});
+
+Route::controller(SampahCT::class)->group(function(){
+    Route::get('/sampah','index');
 });

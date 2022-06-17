@@ -143,7 +143,18 @@
               </li>
             </ul>
           </li>
-          {{--  Section Laporan End --}}                
+          {{--  Section Laporan End --}}
+          
+          {{-- Section Dahsboard Start --}}
+          <li class="nav-item">
+            <a href="/sampah" class="nav-link  @if ( Request::segment(1) == 'sampah' ) active @endif">
+              <i class="nav-icon fas fa-th-large"></i>
+              <p>
+                Sampah
+              </p>
+            </a>
+          </li>
+          {{-- Section Dashboard End --}}
 
           <li class="mx-auto mt-3">
             <a href="/logout" class="btn btn-warning text-dark text-center" style="width: 200px"><b>Logout</b></a>
