@@ -30,19 +30,25 @@
             <th>Kuantitas</th>
             <th>Jenis Laundry</th>
             <th>Status Laundry</th>
-            <th>Status Pembayaran</th>            
+            <th>Status Pembayaran</th>
+            <th>Aksi</th>
           </tr>
         </thead>
-        <tbody>          
+        <tbody>    
+          @foreach($datas as $index => $data)      
           <tr>
-            <td>1</td>
-            <td>Muhamad Haidar Ijlal</td>
-            <td>0851652818255</td>
-            <td>20</td>
-            <td>Cuci</td>
-            <td>proses</td>
-            <td>lunas</td>
+            <td>{{ $index+1 }}</td>
+            <td>{{ $data->nama }}</td>
+            <td>{{ $data->nohp }}</td>
+            <td>{{ $data->berat }}</td>
+            <td>{{ $data->jenis }}</td>
+            <td>{{ $data->status }}</td>
+            <td>{{ $data->status_pembayaran }}</td>
+            <td>
+              
+            </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
@@ -57,5 +63,5 @@
 @endsection
 
 @push('script_swal')
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
 @endpush

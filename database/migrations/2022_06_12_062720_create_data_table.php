@@ -24,6 +24,7 @@ class CreateDataTable extends Migration
             $table->string('total');
             $table->string('status');
             $table->string('status_pembayaran');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
