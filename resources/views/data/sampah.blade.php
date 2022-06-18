@@ -30,24 +30,26 @@
             <th>Kuantitas</th>
             <th>Jenis Laundry</th>
             <th>Status Laundry</th>
-            <th>Status Pembayaran</th>            
-            <th>Aksi</th>            
+            <th>Status Pembayaran</th>
+            <th>Aksi</th>
           </tr>
         </thead>
-        <tbody>          
+        <tbody>    
+          @foreach($datas as $index => $data)      
           <tr>
-            <td>1</td>
-            <td>Muhamad Haidar Ijlal</td>
-            <td>0851652818255</td>
-            <td>20</td>
-            <td>Cuci</td>
-            <td>proses</td>
-            <td>lunas</td>
+            <td>{{ $index+1 }}</td>
+            <td>{{ $data->nama }}</td>
+            <td>{{ $data->nohp }}</td>
+            <td>{{ $data->berat }}</td>
+            <td>{{ $data->jenis }}</td>
+            <td>{{ $data->status }}</td>
+            <td>{{ $data->status_pembayaran }}</td>
             <td>
-              <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-              <a href="#" class="btn btn-success btn-sm">Restore</a>
+              <a href="#" class="btn btn-sm btn-danger">Delete</a>            
+              <a href="#" class="btn btn-sm btn-success">Restore</a>            
             </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
@@ -56,3 +58,4 @@
   </div>
 </div>
 @endsection
+
