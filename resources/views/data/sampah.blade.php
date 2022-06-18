@@ -31,6 +31,7 @@
             <th>Jenis Laundry</th>
             <th>Status Laundry</th>
             <th>Status Pembayaran</th>            
+            <th>Aksi</th>            
           </tr>
         </thead>
         <tbody>          
@@ -42,6 +43,10 @@
             <td>Cuci</td>
             <td>proses</td>
             <td>lunas</td>
+            <td>
+              <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+              <a href="#" class="btn btn-success btn-sm">Restore</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -51,11 +56,3 @@
   </div>
 </div>
 @endsection
-
-@section('css')
-
-@endsection
-
-@push('script_swal')
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-@endpush
