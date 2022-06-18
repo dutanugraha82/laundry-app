@@ -8,10 +8,10 @@
       <h3>Sampah</h3>
       <div class="row">
         <div class="col-lg-3">
-          <button type="submit" class="btn btn-success btn-sm btn-block">Restore data</button>
+          <a href="/sampah/restoreall" type="submit" class="btn btn-success btn-sm btn-block">Restore all data</a>
         </div>
         <div class="col-lg-3">
-          <button type="submit" class="btn btn-danger btn-sm btn-block">Delete data</button>
+          <a href="/sampah/destroyall" type="submit" class="btn btn-danger btn-sm btn-block">Delete all data</a>
         </div>
       </div>
       <div class="card-tools">
@@ -24,7 +24,7 @@
       <table class="table table-head-fixed text-nowrap">
         <thead>
           <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Nama Customer</th>
             <th>No Hp</th>
             <th>Kuantitas</th>
@@ -35,17 +35,18 @@
           </tr>
         </thead>
         <tbody>    
-          @foreach($datas as $index => $data)      
+          @foreach($data as $index => $item)      
           <tr>
             <td>{{ $index+1 }}</td>
-            <td>{{ $data->nama }}</td>
-            <td>{{ $data->nohp }}</td>
-            <td>{{ $data->berat }}</td>
-            <td>{{ $data->jenis }}</td>
-            <td>{{ $data->status }}</td>
-            <td>{{ $data->status_pembayaran }}</td>
+            <td>{{ $item->nama }}</td>
+            <td>{{ $item->nohp }}</td>
+            <td>{{ $item->berat }}</td>
+            <td>{{ $item->jenis }}</td>
+            <td>{{ $item->status }}</td>
+            <td>{{ $item->status_pembayaran }}</td>
             <td>
-              
+              <a href="/sampah/restore/{{ $item->id }}"class="btn btn-success btn-sm">Restore</a>
+              <a href="/sampah/destroy/{{ $item->id }}"class="btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
           @endforeach
@@ -56,12 +57,51 @@
     </div>
   </div>
 </div>
-@endsection
-
-@section('css')
 
 @endsection
 
 @push('script_swal')
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  @if(Session::has('error_destroyall'))
+    <script>
+        swal("Eror!", "{{Session::get('error_destroyall')}}", "error", {
+          button: "Ok",
+        });
+      </script>
+  @endif
+  @if(Session::has('error_deleteall'))
+    <script>
+        swal("Eror!", "{{Session::get('error_deleteall')}}", "error", {
+          button: "Ok",
+        });
+      </script>
+  @endif
+  @if(Session::has('success_restoreall'))
+    <script>
+        swal("Sukses!", "{{Session::get('success_restoreall')}}", "success", {
+          button: "Ok",
+        });
+      </script>
+  @endif
+  @if(Session::has('success_deleteall'))
+    <script>
+        swal("Sukses!", "{{Session::get('success_deleteall')}}", "success", {
+          button: "Ok",
+        });
+      </script>
+  @endif
+  @if(Session::has('delete_success'))
+    <script>
+        swal("Sukses!", "{{Session::get('delete_success')}}", "success", {
+          button: "Ok",
+        });
+      </script>
+  @endif
+  @if(Session::has('restore_success'))
+    <script>
+        swal("Sukses!", "{{Session::get('restore_success')}}", "success", {
+          button: "Ok",
+        });
+      </script>
+  @endif  
 @endpush

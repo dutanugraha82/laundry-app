@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Session;
@@ -18,6 +19,7 @@ class DataLaundryController extends Controller
     public function transaksi_masuk() {
         $transaksiMasuk = DB::table('data')
                             -> where('status','proses')
+                            ->where('deleted_at',null)
                             ->get();
         return view('data.transaksi-masuk', compact('transaksiMasuk'));
     }
@@ -117,8 +119,11 @@ class DataLaundryController extends Controller
 
     // Delete Data
     public function delete($id){
-        DB::table('data')->where('id','=',$id)->delete();
-        return redirect('/list-data-transaksi/masuk'); //->with('pesan')
+        $data = Data::find($id);
+        $data->delete();
+
+
+        return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil didelete sementara!');
     }
 
 }

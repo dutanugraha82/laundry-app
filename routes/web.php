@@ -47,8 +47,9 @@ Route::controller(DataLaundryController::class)->group(function(){
 });
 
 Route::controller(SampahCT::class)->group(function(){
-    Route::get('/sampah','index')->route('data.index');
-    Route::delete('/sampah/{id}','destroy')->route('data.delete');
-    Route::get('/sampah/restore/{id}','restore')->route('data.restore');
-    Route::get('/sampah/restoreall','restoreAll')->route('data.restoreAll');
+    Route::get('/sampah','index');
+    Route::get('/sampah/destroyall','destroyAll');
+    Route::get('/sampah/destroy/{id}','destroy');
+    Route::get('/sampah/restore/{id}','restore');
+    Route::get('/sampah/restoreall','restoreAll');
 });

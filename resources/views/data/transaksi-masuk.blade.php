@@ -41,8 +41,7 @@
                 @method('delete')
                 <a href="/list-data-laundry/proses/detail/{{ $item->id }}" class="btn btn-sm btn-primary">Detail</a>
                 <a href="/data/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
-                <input type="submit" class="btn btn-danger" value="Delete">
-                {{-- <a onclick="confirmDelete({{ $item->id }})" class="btn btn-sm btn-danger">Hapus</a> --}}
+                <input type="submit" class="btn btn-danger btn-sm" value="Delete">                
               </form>
             </td>
             <td>
@@ -86,6 +85,12 @@
   @elseif(Session::has('update_success'))
   <script>
       swal("Sukses!", "{{Session::get('update_success')}}", "success", {
+        button: "Ok",
+      });
+    </script>
+  @elseif(Session::has('delete_success'))
+  <script>
+      swal("Sukses!", "{{Session::get('delete_success')}}", "success", {
         button: "Ok",
       });
     </script>

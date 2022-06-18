@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'data';
 

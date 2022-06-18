@@ -14,14 +14,9 @@ class SampahCT extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('trashed')) {
-            $datas = Data::onlyTrashed()
-                ->get();
-        } else {
-            $datas = Data::get();
-        }
+        $data = Data::onlyTrashed()->get();
 
-        return view('datas', compact('datas'));
+        return view('data/sampah', compact('data'));
     }
   
     /**
@@ -31,9 +26,10 @@ class SampahCT extends Controller
      */
     public function destroy($id)
     {
-        Data::find($id)->delete();
-  
-        return redirect()->back();
+        $data = Data::onlyTrashed()->where('id',$id);
+        $data->forceDelete();
+        
+        return redirect('/sampah')->with('delete_success','Data berhasil didelete!');
     }
   
     /**
@@ -43,9 +39,10 @@ class SampahCT extends Controller
      */
     public function restore($id)
     {
-        Data::withTrashed()->find($id)->restore();
-  
-        return redirect()->back();
+        $data = Data::onlyTrashed()->where('id',$id);
+        $data->restore();
+
+        return redirect('/sampah')->with('restore_success','Data berhasil dikembalikan!');
     }  
   
     /**
@@ -54,9 +51,36 @@ class SampahCT extends Controller
      * @return response()
      */
     public function restoreAll()
+    {   
+        $validate = Data::onlyTrashed()->get();
+        if($validate->all() == []){
+
+            return redirect('/sampah')->with('error_destroyall','Data tidak ditemukan!');
+        }
+        else{
+
+            Data::onlyTrashed()->restore();
+        }
+
+        return redirect('/sampah')->with('success_restoreall','Semua data berhasil dikembalikan!');
+        
+    }
+
+    /**
+     * delete all data
+     *
+     * @return response()
+     */
+    public function destroyAll()
     {
-        Data::onlyTrashed()->restore();
+        $validate = Data::onlyTrashed()->get();
+        if($validate->all() == []){
+
+            return redirect('/sampah')->with('error_deleteall','Data tidak ditemukan!');
+        }
+
+        Data::onlyTrashed()->forceDelete();
   
-        return redirect()->back();
+        return redirect('/sampah')->with('success_deleteall','Semua data berhasil didelete!');
     }
 }
