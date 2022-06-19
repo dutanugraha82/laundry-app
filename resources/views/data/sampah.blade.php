@@ -60,7 +60,8 @@
 
 @endsection
 
-@push('script_swal')
+@push('script')
+<!-- Swall -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   @if(Session::has('error_destroyall'))
     <script>
@@ -68,36 +69,31 @@
           button: "Ok",
         });
       </script>
-  @endif
-  @if(Session::has('error_deleteall'))
+  @elseif(Session::has('error_deleteall'))
     <script>
         swal("Eror!", "{{Session::get('error_deleteall')}}", "error", {
           button: "Ok",
         });
       </script>
-  @endif
-  @if(Session::has('success_restoreall'))
+  @elseif(Session::has('success_restoreall'))
     <script>
         swal("Sukses!", "{{Session::get('success_restoreall')}}", "success", {
           button: "Ok",
         });
       </script>
-  @endif
-  @if(Session::has('success_deleteall'))
+  @elseif(Session::has('success_deleteall'))
     <script>
         swal("Sukses!", "{{Session::get('success_deleteall')}}", "success", {
           button: "Ok",
         });
       </script>
-  @endif
-  @if(Session::has('delete_success'))
+  @elseif(Session::has('delete_success'))
     <script>
         swal("Sukses!", "{{Session::get('delete_success')}}", "success", {
           button: "Ok",
         });
       </script>
-  @endif
-  @if(Session::has('restore_success'))
+  @elseif(Session::has('restore_success'))
     <script>
         swal("Sukses!", "{{Session::get('restore_success')}}", "success", {
           button: "Ok",

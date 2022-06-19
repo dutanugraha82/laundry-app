@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 // use Illuminate\Support\Facades\Session;
 use Whoops\Run;
 
@@ -15,20 +16,26 @@ class DataLaundryController extends Controller
         return view('dashboard/dashboard');
     }
 
-    // Get data where status pembayaran belum lunas
-    public function transaksi_masuk() {
-        $transaksiMasuk = DB::table('data')
-                            -> where('status','proses')
-                            ->where('deleted_at',null)
-                            ->get();
-        return view('data.transaksi-masuk', compact('transaksiMasuk'));
+    public function transaksi_masuk() {       
+        
+        return view('data.transaksi-masuk');
+    }
+
+    public function json(){
+
+        $data = Data::orderBy('id','desc')->get();
+
+        return datatables()
+               ->of($data)
+               ->make(true);
+               
     }
 
     // Get data where status pembayaran lunas
     public function transaksi_keluar() {
         $transaksiKeluar = DB::table('data')
-                            -> where('status','selesai')
-                            -> where('status_pembayaran','lunas')
+                            ->where('status','selesai')
+                            ->where('status_pembayaran','lunas')
                             ->get();
         return view('data.transaksi-keluar', compact('transaksiKeluar'));
     }
@@ -40,13 +47,15 @@ class DataLaundryController extends Controller
 
     // Store or insert data to Database
     public function store(Request $request){
+
         $request->validate([
         'nama' => 'required|max:255',
-        'berat' => 'required',
+        'nohp' => 'required|integer|max:13',
+        'berat' => 'required|integer|max:2',
         'jenis' => 'required',
         'tanggal' => 'required',
         'jasa' => 'required',
-        'total' => 'required',
+        'total' => 'required|integer',
        ]);
 
        DB::table('data')->insert([
@@ -73,7 +82,13 @@ class DataLaundryController extends Controller
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
 
-        if($request->total <= $request->bayar) {
+        // dd($request->all());
+
+        $request->validate([
+            'bayar' => 'required|Integer',
+           ]);
+
+        if (intval($request->total) <= intval($request->bayar)) {
             
         $update = DB::table('data')
                     ->where('id',$id)

@@ -12,7 +12,7 @@
             </div>
         @endif
         <div class="card-body">
-            <form action="/list-data-laundry/proses/detail/{{ $detail->id }}" method="POST">web
+            <form action="/list-data-laundry/proses/detail/{{ $detail->id }}" method="POST">
                 @csrf
                 @method('put')
                 <div class="container my-3">
@@ -48,13 +48,16 @@
                     </div>
                     <div class="mb-3 mx-auto">
                         <label for="harga">Total Harga</label>
-                        <input type="text" name="total" class="form-control" value="Rp {{ $detail->total }}" disabled>
+                        <input type="text" name="total" class="form-control" value="Rp {{ format_uang($detail->total) }}" disabled>
                         <input type="text" name="total" class="form-control" value="{{ $detail->total }}" hidden>
                     </div>
                     @if($detail->status_pembayaran == 'belum lunas')
                         <div class="mb-3 mx-auto">
                             <label for="bayar">Bayar</label>
-                            <input type="text" name="bayar" class="form-control">
+                            <input type="text" name="bayar" class="form-control @error('bayar') is-invalid @enderror">
+                            @error('bayar')
+                                <span class="error invalid-feedback">{{$message}}</span>
+                            @enderror
                         </div>
                     @else
                         <div class="mb-3 mx-auto">

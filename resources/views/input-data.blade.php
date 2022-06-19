@@ -21,21 +21,21 @@
                             </div>
                             <div class="mb-3">
                                 <label for="berat">Berat</label>
-                                <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat">
+                                <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat" value="{{ old('berat') }}">
                                 @error('berat')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
-                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal">
+                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ old('tanggal') }}">
                                 @error('tanggal')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="harga">Total Harga</label>
-                                <input type="text" name="total" class="form-control @error('total') is-invalid @enderror">
+                                <input type="text" name="total" class="form-control @error('total') is-invalid @enderror" value="{{ old('total') }}">
                                 @error('total')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -44,23 +44,26 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="nohp">No Hp</label>
-                                <input type="text" class="form-control" name="nohp" id="nohp">
+                                <input type="text" class="form-control @error('nohp') is-invalid @enderror" name="nohp" id="nohp" value="{{ old('nohp') }}">
+                                @error('nohp')
+                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="jenis">Jenis</label>
-                                <select name="jenis" id="jenis" class="form-control" required>
+                                <select name="jenis" id="jenis" class="form-control" required value="{{ old('jenis') }}">
                                     <option value="">Pilih Jenis Laundry</option>
-                                    <option value="reguler">Reguler</option>
-                                    <option value="express">Express</option>
+                                    <option value="reguler" @if (old('jenis') == 'reguler') selected @endif>Reguler</option>
+                                    <option value="express" @if (old('jenis') == 'express') selected @endif>Express</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="jasa">Jasa Laundry</label>
-                                <select name="jasa" id="jasa" class="form-control" required>
+                                <select name="jasa" id="jasa" class="form-control">
                                     <option value="">Pilih Jasa Laundry</option>
-                                    <option value="Setrika">Setrika</option>
-                                    <option value="Cuci">Cuci</option>
-                                    <option value="Cuci dan Setrika">Cuci dan Setrika</option>
+                                    <option value="setrika"  @if (old('jasa') == 'setrika') selected @endif>Setrika</option>
+                                    <option value="cuci" @if (old('jasa') == 'cuci') selected @endif>Cuci</option>
+                                    <option value="cuci dan setrika" @if (old('jasa') == 'cuci dan setrika') selected @endif>Cuci dan Setrika</option>
                                 </select>
                             </div>
                             <div class="mb-3">

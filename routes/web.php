@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\DataLaundryController;
-use App\Http\Controllers\BinController;
 use App\Http\Controllers\SampahCT;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +23,7 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/dashboard','index');
 
     // Route Data Transaksi
+    Route::get('/list-data-transaksi/masuk/json','json');
     Route::get('/list-data-transaksi/masuk','transaksi_masuk');
     Route::get('/list-data-transaksi/keluar','transaksi_keluar');    
 

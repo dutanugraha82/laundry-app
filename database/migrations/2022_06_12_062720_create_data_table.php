@@ -21,7 +21,7 @@ class CreateDataTable extends Migration
             $table->string('jenis');
             $table->string('tanggal');
             $table->string('jasa');
-            $table->string('total');
+            $table->integer('total');
             $table->string('status');
             $table->string('status_pembayaran');
             $table->softDeletes();
