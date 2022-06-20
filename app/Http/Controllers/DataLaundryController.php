@@ -13,7 +13,16 @@ class DataLaundryController extends Controller
 {
     // View index or dashboard page
     public function index() {
-        return view('dashboard/dashboard');
+
+        $transaksiMasuk = Data::where('status','proses')
+                          ->where('status_pembayaran','belum lunas')
+                          ->count();
+
+        $transaksiKeluar = Data::where('status','selesai')
+                           ->where('status_pembayaran','lunas')
+                           ->count();
+        
+        return view('dashboard/dashboard', ['transaksiMasuk' => $transaksiMasuk, 'transaksiKeluar' => $transaksiKeluar]);
     }
 
     public function transaksi_masuk() {       

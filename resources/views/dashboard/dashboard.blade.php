@@ -12,7 +12,7 @@
         <div class="col-lg-6 col-6">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $transaksiMasuk }}</h3>
               <p>Data laundry pending</p>
               </div>
               <div class="icon">
@@ -26,7 +26,7 @@
         <div class="col-lg-6 col-6">
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $transaksiKeluar }}</h3>
               <p>Data laundry keluar</p>
               </div>
               <div class="icon">
