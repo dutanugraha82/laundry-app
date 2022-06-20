@@ -43,7 +43,7 @@ class DataLaundryController extends Controller
                         <a href="/list-data-laundry/proses/detail/'.$data->id.'" class="btn btn-success btn-sm">Detail</a>
                         <a href="/data/'.$data->id.'/edit" class="btn btn-warning btn-sm">Edit</a>
                         <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
-                        <a href="#" class="btn btn-primary btn-sm">Invoice</a>
+                        <a href="/data/invoice/'.$data->id.'" class="btn btn-primary btn-sm">Invoice</a>
                     </div>
                     ';
                 })
@@ -184,6 +184,14 @@ class DataLaundryController extends Controller
 
 
         return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil didelete sementara!');
+    }
+
+    // View invoice
+    public function invoice($id){
+
+        $data = Data::where('id',$id)->first();
+
+        return view('data/invoice', compact('data'));
     }
 
 }

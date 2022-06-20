@@ -26,7 +26,10 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/list-data-transaksi/masuk/jsonDataMasuk','jsonDataMasuk');
     Route::get('/list-data-transaksi/masuk','transaksi_masuk');
     Route::get('/list-data-transaksi/keluar/jsonDataKeluar','jsonDataKeluar');
-    Route::get('/list-data-transaksi/keluar','transaksi_keluar');    
+    Route::get('/list-data-transaksi/keluar','transaksi_keluar');  
+    
+    // Route Invoice
+    Route::get('/data/invoice/{id}','invoice');
 
     // Route Input Data
     Route::get('/input-data-laundry','insert');
