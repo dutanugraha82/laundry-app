@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -144,6 +145,21 @@ class DataLaundryController extends Controller
         }
 
         return redirect('/list-data-transaksi/masuk')->with('transaction_success', 'Transaksi  berhasil!');
+    }
+
+    public function updateStatus(Request $request, $id){
+        $request->validate([
+            "status" => 'required'
+        ]);
+
+        DB::table('data')
+            ->where('id', $id)
+            ->update([
+                "status" => "selesai"
+            ]);
+
+            return redirect('/')->with('prosesSelesai', 'Proses laundryy selesai');
+
     }
 
     public function edit($id){

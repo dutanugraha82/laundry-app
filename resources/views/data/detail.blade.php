@@ -63,6 +63,13 @@
                         <div class="mb-3 mx-auto">
                             <h1 class="text-success text-center">LUNAS</h1>
                         </div>
+                        <form action="/list-data-laundry/proses/detail/{{ $detail->id }}/selesai"  method="POST">
+                            @csrf
+                            @method('put')
+                            <div class="text-center">
+                            <button type="submit" class="btn btn-success">Selesaikan Proses Laundry</button>
+                            </div>
+                        </form>
                     @endif
                     <div class="my-3 text-center">
                         @if($detail->status_pembayaran == 'belum lunas')

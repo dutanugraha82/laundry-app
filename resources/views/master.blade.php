@@ -61,7 +61,7 @@
           {{-- Section Input Data Start --}}
           <li class="nav-item">
             <a href="/input-data-laundry" class="nav-link  @if ( Request::segment(1) == 'input-data-laundry') active @endif">
-              <i class="nav-icon fas fa-th-large"></i>
+              <i class="nav-icon fas fa-download"></i>
               <p>
                 Input Data Laundry
               </p>

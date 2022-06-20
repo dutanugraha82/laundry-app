@@ -10,10 +10,10 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-6 col-6">
-          <div class="small-box bg-info">
+          <div class="small-box bg-danger">
             <div class="inner">
               <h3>{{ $transaksiMasuk }}</h3>
-              <p>Data laundry pending</p>
+              <p>Transaksi Belum Lunas</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
@@ -24,10 +24,10 @@
           </div>
         </div>
         <div class="col-lg-6 col-6">
-          <div class="small-box bg-danger">
+          <div class="small-box bg-success">
             <div class="inner">
               <h3>{{ $transaksiKeluar }}</h3>
-              <p>Data laundry keluar</p>
+              <p>Transaksi Selesai</p>
               </div>
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
