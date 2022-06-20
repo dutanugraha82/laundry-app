@@ -1,7 +1,7 @@
 @extends('master')
 @section('titletab','Dashboard')
 @section('content')
-<div class="container">
+<div class="content">
   <div class="card">
     <div class="card-header">
         <h3>Dashboard</h3>
@@ -18,7 +18,7 @@
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="/list-data-laundry/data-pending" class="small-box-footer">
+            <a href="/list-data-transaksi/masuk" class="small-box-footer">
             More info <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -32,7 +32,7 @@
               <div class="icon">
               <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="/data-selesai" class="small-box-footer">
+            <a href="/list-data-transaksi/keluar" class="small-box-footer">
             More info <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>

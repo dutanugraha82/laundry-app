@@ -175,8 +175,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
+        <div class="row mb-1">
+          <div class="col-sm-12">
             <h1>@yield('title')</h1>
           </div>
         </div>
@@ -184,7 +184,11 @@
     </section>
 
     <!-- Main content -->
-   @yield('content')
+    <section class="content">
+      <div class="container-fluid">       
+        @yield('content')
+      </div>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

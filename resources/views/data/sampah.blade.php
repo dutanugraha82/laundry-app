@@ -2,7 +2,7 @@
 @section('titletab','Sampah')
 @section('content')
 
-<div class="container">
+<div class="content">
   <div class="row">
     <div class="col-12">
       <div class="card">
