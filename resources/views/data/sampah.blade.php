@@ -3,57 +3,36 @@
 @section('content')
 
 <div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h3>Sampah</h3>
-      <div class="row">
-        <div class="col-lg-3">
-          <a href="/sampah/restoreall" type="submit" class="btn btn-success btn-sm btn-block">Restore all data</a>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="class-title">Data transaksi masuk</h3>
         </div>
-        <div class="col-lg-3">
-          <a href="/sampah/destroyall" type="submit" class="btn btn-danger btn-sm btn-block">Delete all data</a>
+        <div class="card-body">
+          <div class="box">
+            <div class="box-header with-border">
+              <a href="/sampah/restoreall" class="btn btn-primary btn-md">Restore all data</a>
+              <a href="/sampah/destroyall" class="btn btn-danger btn-md">Delete all data</a>
+            </div>
+            <br>
+            <div class="box-body table-responsive">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>No Hp</th>
+                  <th>Berat</th>
+                  <th>Jenis Laundry</th>
+                  <th>Status laundry</th>
+                  <th>Status Pembayaran</th>
+                  <th>Aksi</th>
+                </thead>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card-tools">
-        <div class="input-group input-group-sm" style="width: 150px;">
-        </div>        
-      </div>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body table-responsive p-0" style="height: 300px;">
-      <table class="table table-head-fixed text-nowrap">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Customer</th>
-            <th>No Hp</th>
-            <th>Kuantitas</th>
-            <th>Jenis Laundry</th>
-            <th>Status Laundry</th>
-            <th>Status Pembayaran</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>    
-          @foreach($data as $index => $item)      
-          <tr>
-            <td>{{ $index+1 }}</td>
-            <td>{{ $item->nama }}</td>
-            <td>{{ $item->nohp }}</td>
-            <td>{{ $item->berat }}</td>
-            <td>{{ $item->jenis }}</td>
-            <td>{{ $item->status }}</td>
-            <td>{{ $item->status_pembayaran }}</td>
-            <td>
-              <a href="/sampah/restore/{{ $item->id }}"class="btn btn-success btn-sm">Restore</a>
-              <a href="/sampah/destroy/{{ $item->id }}"class="btn btn-danger btn-sm">Delete</a>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
-      <!-- /.card-body -->
     </div>
   </div>
 </div>
@@ -99,5 +78,30 @@
           button: "Ok",
         });
       </script>
-  @endif  
+  @endif
+
+  <!-- dataTable Section -->
+  <script>
+    let table;
+
+    $(function () {
+      table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false, 
+        ajax: {
+          url: '/sampah/json',
+        },
+        columns: [
+          {data: 'DT_RowIndex', searchable: false, sortable: false},
+          {data: 'nama'},
+          {data: 'nohp'},
+          {data: 'berat'},
+          {data: 'jenis'},
+          {data: 'status'},
+          {data: 'status_pembayaran'},
+          {data: 'aksi', searchable: false, sortable: false}
+        ]
+      });
+    });
+  </script>
 @endpush

@@ -23,8 +23,9 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::get('/dashboard','index');
 
     // Route Data Transaksi
-    Route::get('/list-data-transaksi/masuk/json','json');
+    Route::get('/list-data-transaksi/masuk/jsonDataMasuk','jsonDataMasuk');
     Route::get('/list-data-transaksi/masuk','transaksi_masuk');
+    Route::get('/list-data-transaksi/keluar/jsonDataKeluar','jsonDataKeluar');
     Route::get('/list-data-transaksi/keluar','transaksi_keluar');    
 
     // Route Input Data
@@ -43,11 +44,12 @@ Route::controller(DataLaundryController::class)->group(function(){
     Route::put('/data/{data_id}', 'update');
 
     // Delete Data
-    Route::delete('/data/{data_id}', 'delete');
+    Route::get('/data/{data_id}', 'delete');
 });
 
 Route::controller(SampahCT::class)->group(function(){
     Route::get('/sampah','index');
+    Route::get('/sampah/json','indexJson');
     Route::get('/sampah/destroyall','destroyAll');
     Route::get('/sampah/destroy/{id}','destroy');
     Route::get('/sampah/restore/{id}','restore');

@@ -12,11 +12,31 @@ class SampahCT extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = Data::onlyTrashed()->get();
+        // $data = Data::onlyTrashed()->get();
 
-        return view('data/sampah', compact('data'));
+        return view('data/sampah');
+    }
+
+    public function indexJson(){
+        $data = Data::orderBy('id','desc')
+                ->onlyTrashed()
+                ->get();
+
+                return datatables()
+                ->of($data)
+                ->addIndexColumn()
+                ->addColumn('aksi', function($data) {
+                    return '
+                    <div class="btn btn-group">
+                        <a href="/sampah/restore/'.$data->id.'" class="btn btn-primary btn-sm">restore</a>                      
+                        <a href="/sampah/destroy/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                    ';
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
     }
   
     /**

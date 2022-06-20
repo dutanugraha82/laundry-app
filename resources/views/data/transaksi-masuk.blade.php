@@ -7,18 +7,18 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="class-title">Data Table</h3>
+          <h3 class="class-title">Data transaksi masuk</h3>
         </div>
         <div class="card-body">
           <div class="box">
-            <div class="box-header with-border">
+            <!-- <div class="box-header with-border">
               <a href="#" class="btn btn-primary btn-md">Tambah data</a>
             </div>
-            <br>
+            <br> -->
             <div class="box-body table-responsive">
               <table class="table table-striped table-bordered">
                 <thead>
-                  <!-- <th>No</th> -->
+                  <th>No</th>
                   <th>Nama</th>
                   <th>No Hp</th>
                   <th>Berat</th>
@@ -27,6 +27,7 @@
                   <th>Jasa Laundry</th>
                   <th>Status laundry</th>
                   <th>Status Pembayaran</th>
+                  <th>Aksi</th>
                 </thead>
               </div>
             </div>
@@ -81,9 +82,10 @@
         processing: true,
         autoWidth: false, 
         ajax: {
-          url: '/list-data-transaksi/masuk/json',
+          url: '/list-data-transaksi/masuk/jsonDataMasuk',
         },
         columns: [
+          {data: 'DT_RowIndex', searchable: false, sortable: false},
           {data: 'nama'},
           {data: 'nohp'},
           {data: 'berat'},
@@ -92,6 +94,7 @@
           {data: 'jasa'},
           {data: 'status'},
           {data: 'status_pembayaran'},
+          {data: 'aksi', searchable: false, sortable: false}
         ]
       });
     });

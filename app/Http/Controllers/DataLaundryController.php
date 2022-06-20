@@ -21,14 +21,50 @@ class DataLaundryController extends Controller
         return view('data.transaksi-masuk');
     }
 
-    public function json(){
+    public function jsonDataMasuk(){
 
         $data = Data::orderBy('id','desc')->get();
 
         return datatables()
-               ->of($data)
-               ->make(true);
-               
+                ->of($data)
+                ->addIndexColumn()
+                ->addColumn('aksi', function($data) {
+                    return '
+                    <div class="btn btn-group">
+                        <a href="/list-data-laundry/proses/detail/'.$data->id.'" class="btn btn-success btn-sm">Detail</a>
+                        <a href="/data/'.$data->id.'/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
+                        <a href="#" class="btn btn-primary btn-sm">Invoice</a>
+                    </div>
+                    ';
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+            
+    }
+
+    public function jsonDataKeluar(){
+
+        $data = Data::orderBy('id','desc')
+                ->where('status','selesai')        
+                ->where('status_pembayaran','lunas')        
+                ->get();
+
+        return datatables()
+                ->of($data)
+                ->addIndexColumn()
+                ->addColumn('aksi', function($data) {
+                    return '
+                    <div class="btn btn-group">
+                        <a href="/list-data-laundry/proses/detail/'.$data->id.'" class="btn btn-success btn-sm">Detail</a>                      
+                        <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
+                        <a href="#" class="btn btn-primary btn-sm">Invoice</a>
+                    </div>
+                    ';
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+            
     }
 
     // Get data where status pembayaran lunas
@@ -50,8 +86,8 @@ class DataLaundryController extends Controller
 
         $request->validate([
         'nama' => 'required|max:255',
-        'nohp' => 'required|integer|max:13',
-        'berat' => 'required|integer|max:2',
+        'nohp' => 'required',
+        'berat' => 'required',
         'jenis' => 'required',
         'tanggal' => 'required',
         'jasa' => 'required',
@@ -82,8 +118,6 @@ class DataLaundryController extends Controller
     // Update status pembayaran ketika customer bayar
     public function update_statusPembayaran(Request $request, $id) {
 
-        // dd($request->all());
-
         $request->validate([
             'bayar' => 'required|Integer',
            ]);
@@ -104,12 +138,14 @@ class DataLaundryController extends Controller
     }
 
     public function edit($id){
+
         $edit = DB::table('data')->where('id', $id)->first();
-        // dd($edit);
+
         return view('data.edit', compact('edit'));
     }
 
     public function update($id,  Request $request){
+
         $request->validate([
             'nama' => 'required|max:255',
             'berat' => 'required',
