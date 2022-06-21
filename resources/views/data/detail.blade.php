@@ -67,7 +67,7 @@
                             @csrf
                             @method('put')
                             <div class="text-center">
-                            <button type="submit" class="btn btn-success">Selesaikan Proses Laundry</button>
+                                <input type="submit" class="btn btn-success" value="Selesaikan Proses Laundry">
                             </div>
                         </form>
                     @endif
@@ -82,4 +82,7 @@
         </div>
     </div>
 </div>
+<div class="container text-center">
+    <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
+  </div>
 @endsection

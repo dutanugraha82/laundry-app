@@ -2,8 +2,8 @@
 @section('titletab','Data Laundry')
 @section('content')
 <div class="content">
-    <div class="card">
-        <div class="card-header">
+    <div class="card shadow-lg">
+        <div class="card-header text-center">
             <h3>Input Data Laundry</h3>
         </div>
         <div class="card-body">
@@ -84,4 +84,7 @@
         </div>
     </div>
 </div>
+<div class="container text-center">
+    <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
+  </div>
 @endsection

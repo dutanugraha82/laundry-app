@@ -1,11 +1,8 @@
 @extends('master')
 @section('titletab','Data Proses')
-@section('content')
 
-<div class="content">
-<!-- =======
+@section('content')  
 <div class="container-fluid px-4">
->>>>>>> f77bebd733ada76e749bf27d5c858557c83f9fff -->
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -13,11 +10,7 @@
           <h3 class="class-title">Data transaksi masuk</h3>
         </div>
         <div class="card-body">
-          <div class="box">
-            <!-- <div class="box-header with-border">
-              <a href="#" class="btn btn-primary btn-md">Tambah data</a>
-            </div>
-            <br> -->
+          <div class="box">           
             <div class="box-body table-responsive">
               <table class="table table-striped table-bordered">
                 <thead>
@@ -32,17 +25,22 @@
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </thead>
+              </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
+</div>
+<div class="container-fluid text-center">
+  <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
 </div>
 @endsection
 
 @push('script')
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   @if(Session::has('sukses_input'))
   <script>

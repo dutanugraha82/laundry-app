@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,11 @@ class DataLaundryController extends Controller
 
     public function jsonDataMasuk(){
 
-        $data = Data::orderBy('id','desc')->get();
+        $data = Data::orderBy('id','desc')
+                    ->where('status','proses')        
+                    ->where('status_pembayaran','lunas')
+                    ->orwhere('status_pembayaran','belum lunas')
+                    ->get();
 
         return datatables()
                 ->of($data)
@@ -45,6 +50,7 @@ class DataLaundryController extends Controller
                         <a href="/data/'.$data->id.'/edit" class="btn btn-warning btn-sm">Edit</a>
                         <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
                         <a href="/data/invoice/'.$data->id.'" class="btn btn-primary btn-sm">Invoice</a>
+                        <a href="/list-data-laundry/proses/detail/'.$data->id.'/selesai" class="btn btn-outline-success btn-sm">Selesai</a>
                     </div>
                     ';
                 })
@@ -68,7 +74,7 @@ class DataLaundryController extends Controller
                     <div class="btn btn-group">
                         <a href="/list-data-laundry/proses/detail/'.$data->id.'" class="btn btn-success btn-sm">Detail</a>                      
                         <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
-                        <a href="#" class="btn btn-primary btn-sm">Invoice</a>
+                        <a href="/data/invoice/'.$data->id.'" class="btn btn-primary btn-sm">Invoice</a>
                     </div>
                     ';
                 })
@@ -95,8 +101,7 @@ class DataLaundryController extends Controller
     public function store(Request $request){
 
         $request->validate([
-        'nama' => 'required|max:255',
-        'nohp' => 'required',
+        'nama' => 'required|max:255',        
         'berat' => 'required',
         'jenis' => 'required',
         'tanggal' => 'required',
@@ -147,18 +152,25 @@ class DataLaundryController extends Controller
         return redirect('/list-data-transaksi/masuk')->with('transaction_success', 'Transaksi  berhasil!');
     }
 
-    public function updateStatus(Request $request, $id){
-        $request->validate([
-            "status" => 'required'
-        ]);
+    public function updateProses($id){        
 
-        DB::table('data')
-            ->where('id', $id)
-            ->update([
-                "status" => "selesai"
-            ]);
+        $data = DB::table('data')
+                    ->where('id',$id)
+                    ->where('status_pembayaran','lunas')
+                    ->first();
 
-            return redirect('/')->with('prosesSelesai', 'Proses laundryy selesai');
+        if($data){
+            DB::table('data')
+                ->where('id', $id)
+                ->update([
+                    "status" => "selesai"
+                ]);
+
+                return redirect('/dashboard')->with('update_success', 'Proses selesai!');        
+        }
+        else {
+            return redirect('dashboard')->with('error_updateStatus','Status pembayaran belum selesai!');
+        }
 
     }
 
@@ -202,12 +214,20 @@ class DataLaundryController extends Controller
         return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil didelete sementara!');
     }
 
-    // View invoice
-    public function invoice($id){
-
+    public function invoice($id) {
         $data = Data::where('id',$id)->first();
 
         return view('data/invoice', compact('data'));
+    }
+
+    public function laporanHarian(){
+        $laporan = DB::table('data')
+                ->select('*')
+                ->where('status','selesai')
+                ->where('status_pembayaran','lunas')
+                ->whereDate('tanggal',Carbon::today())
+                ->get();
+                dd($laporan);
     }
 
 }
