@@ -152,6 +152,8 @@ class DataLaundryController extends Controller
             "status" => 'required'
         ]);
 
+        // dd($id);
+
         DB::table('data')
             ->where('id', $id)
             ->update([
