@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -217,6 +218,16 @@ class DataLaundryController extends Controller
         $data = Data::where('id',$id)->first();
 
         return view('data/invoice', compact('data'));
+    }
+
+    public function laporanHarian(){
+        $laporan = DB::table('data')
+                ->select('*')
+                ->where('status','selesai')
+                ->where('status_pembayaran','lunas')
+                ->whereDate('tanggal',Carbon::today())
+                ->get();
+                dd($laporan);
     }
 
 }

@@ -4,6 +4,8 @@ use App\Http\Controllers\DataLaundryController;
 use App\Http\Controllers\SampahCT;
 use Illuminate\Support\Facades\Route;
 
+use function Ramsey\Uuid\v1;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +53,9 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Invoice
     Route::get('/data/invoice/{id}','invoice');
+
+    // Laporan Harian
+    Route::get('/laporan-harian','laporanHarian');
 });
 
 Route::controller(SampahCT::class)->group(function(){
@@ -61,3 +66,7 @@ Route::controller(SampahCT::class)->group(function(){
     Route::get('/sampah/restore/{id}','restore');
     Route::get('/sampah/restoreall','restoreAll');
 });
+
+// Route::get('/laporan-harian', function(){
+//     return view('laporan.laporan-harian');
+// });
