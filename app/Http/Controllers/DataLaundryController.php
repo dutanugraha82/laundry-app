@@ -33,7 +33,11 @@ class DataLaundryController extends Controller
 
     public function jsonDataMasuk(){
 
-        $data = Data::orderBy('id','desc')->get();
+        $data = Data::orderBy('id','desc')
+                    ->where('status','proses')        
+                    ->where('status_pembayaran','lunas')
+                    ->orwhere('status_pembayaran','belum lunas')
+                    ->get();
 
         return datatables()
                 ->of($data)
