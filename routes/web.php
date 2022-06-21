@@ -41,6 +41,9 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Data updated status pembayaran
     Route::put('/list-data-laundry/proses/detail/{data_id}','update_statusPembayaran');
+    
+    //Update data proses
+    Route::put('/list-data-laundry/proses/detail/{data_id}/selesai','updateProses');
 
     // Edit Data
     Route::get('/data/{data_id}/edit', 'edit');

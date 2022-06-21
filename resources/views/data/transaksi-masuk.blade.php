@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="content">
+<!-- =======
+<div class="container-fluid px-4">
+>>>>>>> f77bebd733ada76e749bf27d5c858557c83f9fff -->
   <div class="row">
     <div class="col-12">
       <div class="card">
