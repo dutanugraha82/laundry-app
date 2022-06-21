@@ -213,8 +213,10 @@ class DataLaundryController extends Controller
         return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil didelete sementara!');
     }
 
-    public function invoice() {
-        return view('data/invoice');
+    public function invoice($id) {
+        $data = Data::where('id',$id)->first();
+
+        return view('data/invoice', compact('data'));
     }
 
 }
