@@ -1,7 +1,7 @@
 @extends('master')
 @section('titletab','Data Laundry')
 @section('content')
-<div class="container">
+<div class="content">
     <div class="card shadow-lg">
         <div class="card-header text-center">
             <h3>Input Data Laundry</h3>
