@@ -85,6 +85,5 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <!-- myscript -->
 @stack('script')
-
 </body>
 </html>

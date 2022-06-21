@@ -95,8 +95,7 @@ class DataLaundryController extends Controller
     public function store(Request $request){
 
         $request->validate([
-        'nama' => 'required|max:255',
-        'nohp' => 'required',
+        'nama' => 'required|max:255',        
         'berat' => 'required',
         'jenis' => 'required',
         'tanggal' => 'required',

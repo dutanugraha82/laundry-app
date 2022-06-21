@@ -28,16 +28,16 @@
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </thead>
-              </div>
+              </table>
             </div>
           </div>
-        </div>
-        <div class="container text-center">
-          <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="container text-center">
+  <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
 </div>
 
 @endsection

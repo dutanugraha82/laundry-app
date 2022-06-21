@@ -1,7 +1,7 @@
 @extends('master')
 @section('titletab','Data Proses')
-@section('content')
 
+@section('content')  
 <div class="container-fluid px-4">
   <div class="row">
     <div class="col-12">
@@ -10,11 +10,7 @@
           <h3 class="class-title">Data transaksi masuk</h3>
         </div>
         <div class="card-body">
-          <div class="box">
-            <!-- <div class="box-header with-border">
-              <a href="#" class="btn btn-primary btn-md">Tambah data</a>
-            </div>
-            <br> -->
+          <div class="box">           
             <div class="box-body table-responsive">
               <table class="table table-striped table-bordered">
                 <thead>
@@ -29,16 +25,18 @@
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </thead>
+              </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
-  <div class="container text-center">
-    <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
-  </div>
+</div>
+<div class="container-fluid text-center">
+  <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
+</div>
 @endsection
 
 @push('script')

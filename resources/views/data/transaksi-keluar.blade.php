@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
           <div class="box">
-          <div class="box-body table-responsive">
+            <div class="box-body table-responsive">
               <table class="table table-striped table-bordered">
                 <thead>
                   <th>No</th>
@@ -25,7 +25,7 @@
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </thead>
-              </div>
+              </table>
             </div>
           </div>
         </div>
