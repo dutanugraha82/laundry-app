@@ -60,16 +60,9 @@
                             @enderror
                         </div>
                     @else
-                        <div class="mb-3 mx-auto">
-                            <h1 class="text-success text-center">LUNAS</h1>
-                        </div>
-                        <form action="/list-data-laundry/proses/detail/{{ $detail->id }}/selesai"  method="POST">
-                            @csrf
-                            @method('put')
-                            <div class="text-center">
-                                <input type="submit" class="btn btn-success" value="Selesaikan Proses Laundry">
-                            </div>
-                        </form>
+                    <div class="alert alert-success text-center" role="alert">
+                        <strong>Lunas</strong>
+                    </div>
                     @endif
                     <div class="my-3 text-center">
                         @if($detail->status_pembayaran == 'belum lunas')

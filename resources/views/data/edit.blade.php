@@ -49,18 +49,16 @@
                     <div class="mb-3">
                         <label for="jenis">Jenis</label>
                         <select name="jenis" id="jenis" class="form-control" required>
-                            <option value="{{ $edit->jenis }}">{{ $edit->jenis }}</option>
-                            <option value="reguler">Reguler</option>
-                            <option value="express">Express</option>
+                            <option @if($edit->jenis == 'reguler') selected @endif value="reguler">Reguler</option>
+                            <option @if($edit->jenis == 'express') selected @endif value="express">Express</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="jasa">Jasa Laundry</label>
                         <select name="jasa" id="jasa" class="form-control" required>
-                            <option value="{{ $edit->jasa }}">{{ $edit->jasa }}</option>
-                            <option value="Setrika">Setrika</option>
-                            <option value="Cuci">Cuci</option>
-                            <option value="Cuci dan Setrika">Cuci dan Setrika</option>
+                            <option @if($edit->jenis == 'setrika') selected @endif value="Setrika">Setrika</option>
+                            <option @if($edit->jenis == 'cuci') selected @endif value="Cuci">Cuci</option>
+                            <option @if($edit->jenis == 'cuci dan setrika') selected @endif value="Cuci dan Setrika">Cuci dan Setrika</option>
                         </select>
                     </div>
                 </div>                    

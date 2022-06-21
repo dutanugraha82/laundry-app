@@ -101,12 +101,13 @@ class DataLaundryController extends Controller
     public function store(Request $request){
 
         $request->validate([
-        'nama' => 'required|max:255',        
-        'berat' => 'required',
-        'jenis' => 'required',
-        'tanggal' => 'required',
-        'jasa' => 'required',
-        'total' => 'required|integer',
+            'nama' => 'required|max:255',
+            'nohp' => 'numeric|digits_between:12,15',
+            'berat' => 'required|numeric|digits_between:1,2',
+            'jenis' => 'required',
+            'tanggal' => 'required',
+            'jasa' => 'required',
+            'total' => 'required|numeric',
        ]);
 
        DB::table('data')->insert([
@@ -181,19 +182,21 @@ class DataLaundryController extends Controller
         return view('data.edit', compact('edit'));
     }
 
-    public function update($id,  Request $request){
+    public function update($id,  Request $request){        
 
         $request->validate([
             'nama' => 'required|max:255',
-            'berat' => 'required',
+            'nohp' => 'numeric|max:15',
+            'berat' => 'required|numeric|max:2',
             'jenis' => 'required',
             'tanggal' => 'required',
             'jasa' => 'required',
-            'total' => 'required',
+            'total' => 'required|numeric',
            ]);
 
            DB::table('data')->where('id', $id)->update([
             'nama' => $request['nama'],
+            'nohp' => $request['nohp'],
             'berat' => $request['berat'],
             'jenis' => $request['jenis'],
             'tanggal' => $request['tanggal'],
