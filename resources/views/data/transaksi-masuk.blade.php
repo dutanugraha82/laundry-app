@@ -40,39 +40,6 @@
 @endsection
 
 @push('script')
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  @if(Session::has('sukses_input'))
-  <script>
-      swal("Sukses!", "{{Session::get('sukses_input')}}", "success", {
-        button: "Ok",
-      });
-    </script>
-  @elseif(Session::has('transaction_failed'))
-  <script>
-      swal("Gagal!", "{{Session::get('transaction_failed')}}", "error", {
-        button: "Ok",
-      });
-    </script>
-  @elseif(Session::has('transaction_success'))
-  <script>
-      swal("Sukses!", "{{Session::get('transaction_success')}}", "success", {
-        button: "Ok",
-      });
-    </script>
-  @elseif(Session::has('update_success'))
-  <script>
-      swal("Sukses!", "{{Session::get('update_success')}}", "success", {
-        button: "Ok",
-      });
-    </script>
-  @elseif(Session::has('delete_success'))
-  <script>
-      swal("Sukses!", "{{Session::get('delete_success')}}", "success", {
-        button: "Ok",
-      });
-    </script>
-  @endif
-
   <!-- dataTable Section -->
   <script>
     let table;

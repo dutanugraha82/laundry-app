@@ -49,7 +49,7 @@ class SampahCT extends Controller
         $data = Data::onlyTrashed()->where('id',$id);
         $data->forceDelete();
         
-        return redirect('/sampah')->with('delete_success','Data berhasil didelete!');
+        return redirect('/sampah')->with('delete_success','Data berhasil dihapus!');
     }
   
     /**

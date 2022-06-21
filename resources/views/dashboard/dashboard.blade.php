@@ -107,5 +107,21 @@
     </div>
   </div>
 </div>
-
 @endsection
+
+@push('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  @if(Session::has('update_success'))
+  <script>
+    swal("Sukses!", "{{Session::get('update_success')}}", "success", {
+      button: "Ok",
+    });
+  </script>
+  @elseif(Session::has('error_updateStatus'))
+  <script>
+    swal("Gagal!", "{{Session::get('error_updateStatus')}}", "error", {
+      button: "Ok",
+    });
+  </script>
+  @endif
+@endpush
