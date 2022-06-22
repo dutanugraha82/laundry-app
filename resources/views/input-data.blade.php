@@ -20,29 +20,6 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="berat">Berat</label>
-                                <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat" value="{{ old('berat') }}">
-                                @error('berat')
-                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="tanggal">Tanggal</label>
-                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ old('tanggal') }}">
-                                @error('tanggal')
-                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="harga">Total Harga</label>
-                                <input type="text" name="total" class="form-control @error('total') is-invalid @enderror" value="{{ old('total') }}">
-                                @error('total')
-                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
                                 <label for="nohp">No Hp</label>
                                 <input type="text" class="form-control @error('nohp') is-invalid @enderror" name="nohp" id="nohp" value="{{ old('nohp') }}">
                                 @error('nohp')
@@ -50,6 +27,16 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="berat">Berat</label>
+                                <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat" value="{{ old('berat') }}">
+                                @error('berat')
+                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col">
+                            
+                            <!-- <div class="mb-3">
                                 <label for="jenis">Jenis</label>
                                 <select name="jenis" id="jenis" class="form-control @error('jenis') is-invalid @enderror" value="{{ old('jenis') }}">
                                     <option value="">Pilih Jenis Laundry</option>
@@ -59,6 +46,13 @@
                                         <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                     @enderror
                                 </select>
+                            </div> -->
+                            <div class="mb-3">
+                                <label for="tanggal">Tanggal</label>
+                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ old('tanggal') }}">
+                                @error('tanggal')
+                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="jasa">Jasa Laundry</label>
@@ -71,6 +65,13 @@
                                         <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                     @enderror
                                 </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="harga">Total Harga</label>
+                                <input type="text" name="total" class="form-control @error('total') is-invalid @enderror" value="{{ old('total') }}">
+                                @error('total')
+                                    <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <!-- <label for="status">Status</label> -->
