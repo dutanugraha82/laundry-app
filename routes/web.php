@@ -59,6 +59,7 @@ Route::controller(DataLaundryController::class)->group(function(){
 
     // Laporan Harian
     Route::get('/laporan-harian','laporanHarian');
+    Route::get('/laporan-harian/json','laporanHarianJson');
 });
 
 Route::controller(SampahCT::class)->group(function(){

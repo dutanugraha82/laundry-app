@@ -223,14 +223,30 @@ class DataLaundryController extends Controller
         return view('data/invoice', compact('data'));
     }
 
-    public function laporanHarian(){
+    public function laporanHarian(){ 
+
+        $berat = DB::table('data')
+                    ->sum('berat');
+        $uang = DB::table('data')
+                    ->sum('total');
+            
+
+        return view('laporan/laporan-harian', compact('berat','uang'));
+    }
+
+    public function laporanHarianJson(){
+
         $laporan = DB::table('data')
                 ->select('*')
                 ->where('status','selesai')
                 ->where('status_pembayaran','lunas')
-                ->whereDate('tanggal',Carbon::today())
+                // ->whereDate('tanggal',Carbon::today())
                 ->get();
-                dd($laporan);
+
+        return datatables()
+            ->of($laporan)
+            ->addIndexColumn()
+            ->make(true);                      
     }
 
 }
