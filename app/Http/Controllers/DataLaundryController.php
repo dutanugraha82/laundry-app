@@ -214,7 +214,7 @@ class DataLaundryController extends Controller
         $data->delete();
 
 
-        return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil didelete sementara!');
+        return redirect('/list-data-transaksi/masuk')->with('delete_success','data berhasil dihapus!');
     }
 
     public function invoice($id) {
@@ -240,13 +240,36 @@ class DataLaundryController extends Controller
                 ->select('*')
                 ->where('status','selesai')
                 ->where('status_pembayaran','lunas')
-                // ->whereDate('tanggal',Carbon::today())
+                ->whereDate('tanggal',Carbon::today())
                 ->get();
 
         return datatables()
             ->of($laporan)
             ->addIndexColumn()
             ->make(true);                      
+    }
+
+    public function laporanBulanan(){
+        $berat = DB::table('data')
+                    ->sum('berat');
+        $uang = DB::table('data')
+                    ->sum('total');
+
+                    return view('laporan.laporan-bulanan', compact('berat','uang'));
+    }
+
+    public function laporanBulananJson(){
+        $laporan = DB::table('data')
+                    ->select('*')
+                    ->where('status','selesai')
+                    ->where('status_pembayaran','lunas')
+                    ->whereYear('tanggal',Carbon::now()->month())
+                    ->get();
+
+            return datatables()
+            ->of($laporan)
+            ->addIndexColumn()
+            ->make(true);
     }
 
 }

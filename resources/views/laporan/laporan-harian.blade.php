@@ -4,7 +4,7 @@
 <div class="card">
   <div class="container">
     <div class="card-header">
-      <h3 class="text-center">Laporan Harian</h3>
+      <h3 class="text-center">Laporan Harian Ini</h3>
     </div>
     <br>
     <div class="card-body table-responsive p-0">
