@@ -15,7 +15,7 @@ class JenisDataLaundrySeeder extends Seeder
     public function run()
     {
 
-        DB::table('jenis')->truncate();
+        DB::table('jenis');
 
 $push = [ 
             [

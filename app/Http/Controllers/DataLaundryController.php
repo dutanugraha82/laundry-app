@@ -99,6 +99,7 @@ class DataLaundryController extends Controller
         $dataNamaJenis = DB::table('jenis')
                             ->select('*')
                             ->get();
+                // dd($dataNamaJenis);
 
         return view('input-data',compact('dataNamaJenis'));
     }
@@ -119,7 +120,6 @@ class DataLaundryController extends Controller
        ]);
 
        DB::table('data')->insert([
-            'jenis_id' => $request->jenis_id,
             'nama' => $request->nama,
             'nohp' => $request->nohp,
             'qty' => $request->qty,

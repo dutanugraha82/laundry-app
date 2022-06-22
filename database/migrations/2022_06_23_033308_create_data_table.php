@@ -15,7 +15,6 @@ class CreateDataTable extends Migration
     {
         Schema::create('data', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('jenis_id');
             $table->string('nama');
             $table->string('nohp')->nullable();
             $table->integer('qty');

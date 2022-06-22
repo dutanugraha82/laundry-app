@@ -12,9 +12,6 @@
                 <div class="container my-3">
                     <div class="row">
                         <div class="col">
-                        <div class="mb-3">                                
-                            <input type="text" name="jenis_id" class="form-control" value="{{ $dataNamaJenis }}">                                
-                            </div>
                             <div class="mb-3">
                                 <label for="nama">Nama Customer</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ old('nama') }}" autofocus>
