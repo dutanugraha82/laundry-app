@@ -102,7 +102,7 @@ class DataLaundryController extends Controller
 
         $request->validate([
             'nama' => 'required|max:255',
-            'nohp' => 'numeric|digits_between:12,15',
+            'nohp' => 'required|numeric|digits_between:12,15',
             'berat' => 'required|numeric|digits_between:1,2',
             'jenis' => 'required',
             'tanggal' => 'required',
@@ -114,7 +114,7 @@ class DataLaundryController extends Controller
             'nama' => $request->nama,
             'nohp' => $request->nohp,
             'berat' => $request->berat,
-            'jenis' => $request->jenis,
+            'jenis' => $request->jenis,   
             'tanggal' => $request->tanggal,
             'jasa' => $request->jasa,
             'total' => $request->total,
@@ -186,9 +186,9 @@ class DataLaundryController extends Controller
 
         $request->validate([
             'nama' => 'required|max:255',
-            'nohp' => 'numeric|max:15',
+            'nohp' => 'required|numeric|max:15',
             'berat' => 'required|numeric|max:2',
-            'jenis' => 'required',
+            'jenis' => 'required|in:reguler,express|not_in:0',
             'tanggal' => 'required',
             'jasa' => 'required',
             'total' => 'required|numeric',

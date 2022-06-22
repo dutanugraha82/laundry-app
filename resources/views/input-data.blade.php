@@ -51,19 +51,25 @@
                             </div>
                             <div class="mb-3">
                                 <label for="jenis">Jenis</label>
-                                <select name="jenis" id="jenis" class="form-control" required value="{{ old('jenis') }}">
+                                <select name="jenis" id="jenis" class="form-control @error('jenis') is-invalid @enderror" value="{{ old('jenis') }}">
                                     <option value="">Pilih Jenis Laundry</option>
                                     <option value="reguler" @if (old('jenis') == 'reguler') selected @endif>Reguler</option>
                                     <option value="express" @if (old('jenis') == 'express') selected @endif>Express</option>
+                                    @error('jenis')
+                                        <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                    @enderror
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="jasa">Jasa Laundry</label>
-                                <select name="jasa" id="jasa" class="form-control">
+                                <select name="jasa" id="jasa" class="form-control @error('jasa') is-invalid @enderror">
                                     <option value="">Pilih Jasa Laundry</option>
                                     <option value="setrika"  @if (old('jasa') == 'setrika') selected @endif>Setrika</option>
                                     <option value="cuci" @if (old('jasa') == 'cuci') selected @endif>Cuci</option>
                                     <option value="cuci dan setrika" @if (old('jasa') == 'cuci dan setrika') selected @endif>Cuci dan Setrika</option>
+                                    @error('jasa')
+                                        <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
+                                    @enderror
                                 </select>
                             </div>
                             <div class="mb-3">
