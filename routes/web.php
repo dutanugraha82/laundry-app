@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataLaundryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SampahCT;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,13 @@ use function Ramsey\Uuid\v1;
 |
 */
 
-
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login','login')->middleware('guest')->name('login');
+    Route::post('/login-proses','authenticate');
+    Route::get('/register','register');
+    Route::post('/register-proses','store');
+    Route::get('/logout','logout');
+});
 Route::controller(DataLaundryController::class)->group(function(){
 
     // Route Dahsboard
@@ -60,17 +67,17 @@ Route::controller(DataLaundryController::class)->group(function(){
     // Laporan Harian
     Route::get('/laporan-harian','laporanHarian');
     Route::get('/laporan-harian/json','laporanHarianJson');
+
+    //laporan Bulanan
+    Route::get('/laporan-bulanan', 'laporanBulanan');
+    Route::get('/laporan-bulanan/json', 'laporanBulananJson');
 });
 
 Route::controller(SampahCT::class)->group(function(){
-    Route::get('/sampah','index');
-    Route::get('/sampah/json','indexJson');
-    Route::get('/sampah/destroyall','destroyAll');
-    Route::get('/sampah/destroy/{id}','destroy');
-    Route::get('/sampah/restore/{id}','restore');
-    Route::get('/sampah/restoreall','restoreAll');
+    Route::get('/sampah','index')->middleware('auth');
+    Route::get('/sampah/json','indexJson')->middleware('auth');
+    Route::get('/sampah/destroyall','destroyAll')->middleware('auth');
+    Route::get('/sampah/destroy/{id}','destroy')->middleware('auth');
+    Route::get('/sampah/restore/{id}','restore')->middleware('auth');
+    Route::get('/sampah/restoreall','restoreAll')->middleware('auth');
 });
-
-// Route::get('/laporan-harian', function(){
-//     return view('laporan.laporan-harian');
-// });
