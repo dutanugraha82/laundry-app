@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use App\Models\Jenis;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -94,16 +95,23 @@ class DataLaundryController extends Controller
 
     // View form input data laundry
     public function insert(){
-        return view('input-data');
+
+        $dataNamaJenis = DB::table('jenis')
+                            ->select('*')
+                            ->get();
+
+        return view('input-data',compact('dataNamaJenis'));
     }
 
     // Store or insert data to Database
     public function store(Request $request){
 
+        dd($request);
+
         $request->validate([
             'nama' => 'required|max:255',
             'nohp' => 'required|numeric|digits_between:12,15',
-            'berat' => 'required|numeric|digits_between:1,2',
+            'qty' => 'required|numeric',
             'jenis' => 'required',
             'tanggal' => 'required',
             'jasa' => 'required',
@@ -111,9 +119,10 @@ class DataLaundryController extends Controller
        ]);
 
        DB::table('data')->insert([
+            'jenis_id' => $request->jenis_id,
             'nama' => $request->nama,
             'nohp' => $request->nohp,
-            'berat' => $request->berat,
+            'qty' => $request->qty,
             'jenis' => $request->jenis,   
             'tanggal' => $request->tanggal,
             'jasa' => $request->jasa,
@@ -135,7 +144,7 @@ class DataLaundryController extends Controller
     public function update_statusPembayaran(Request $request, $id) {
 
         $request->validate([
-            'bayar' => 'required|Integer',
+            'bayar' => 'required|numeric',
            ]);
 
         if (intval($request->total) <= intval($request->bayar)) {
@@ -187,7 +196,7 @@ class DataLaundryController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'nohp' => 'required|numeric|max:15',
-            'berat' => 'required|numeric|max:2',
+            'qty' => 'required|numeric',
             'jenis' => 'required|in:reguler,express|not_in:0',
             'tanggal' => 'required',
             'jasa' => 'required',
@@ -197,7 +206,7 @@ class DataLaundryController extends Controller
            DB::table('data')->where('id', $id)->update([
             'nama' => $request['nama'],
             'nohp' => $request['nohp'],
-            'berat' => $request['berat'],
+            'qty' => $request['qty'],
             'jenis' => $request['jenis'],
             'tanggal' => $request['tanggal'],
             'jasa' => $request['jasa'],

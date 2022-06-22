@@ -14,13 +14,13 @@ class CreateDataTable extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
+            $table->integer('jenis_id');
             $table->string('nama');
             $table->string('nohp')->nullable();
-            $table->integer('berat');
-            $table->string('jenis');
+            $table->integer('qty');
             $table->string('tanggal');
-            $table->string('jasa');
+            $table->string('jenis');
             $table->integer('total');
             $table->string('status');
             $table->string('status_pembayaran');
