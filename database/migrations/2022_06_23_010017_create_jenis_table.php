@@ -17,7 +17,7 @@ class CreateJenisTable extends Migration
             $table->id();
             $table->string('nama_jenis');
             $table->string('satuan');
-            $table->integer('harga');
+            $table->string('harga');
             $table->timestamps();
         });
     }

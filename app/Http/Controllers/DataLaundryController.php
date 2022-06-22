@@ -107,27 +107,30 @@ class DataLaundryController extends Controller
     // Store or insert data to Database
     public function store(Request $request){
 
-        dd($request);
+        $total = DB::table('jenis')
+                ->select('harga')
+                ->where('nama_jenis',$request->jenis)
+                ->first();
+                
+        $subtotal = floatval($request->qty) * intval($total->harga);
 
         $request->validate([
-            'nama' => 'required|max:255',
-            'nohp' => 'required|numeric|digits_between:12,15',
-            'qty' => 'required|numeric',
-            'jenis' => 'required',
+            'nama'    => 'required|max:255',
+            'nohp'    => 'required|numeric|digits_between:12,15',
+            'qty'     => 'required|numeric',
+            'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',
-            'jasa' => 'required',
-            'total' => 'required|numeric',
+            'jasa'    => 'required',            
        ]);
 
        DB::table('data')->insert([
-            'nama' => $request->nama,
-            'nohp' => $request->nohp,
-            'qty' => $request->qty,
-            'jenis' => $request->jenis,   
-            'tanggal' => $request->tanggal,
-            'jasa' => $request->jasa,
-            'total' => $request->total,
-            'status' => 'proses',
+            'nama'              => $request->nama,
+            'nohp'              => $request->nohp,
+            'qty'               => $request->qty,
+            'jenis'             => $request->jenis,   
+            'tanggal'           => $request->tanggal,
+            'total'             => $subtotal,
+            'status'            => 'proses',
             'status_pembayaran' => 'belum lunas'
        ]);
        
@@ -194,23 +197,23 @@ class DataLaundryController extends Controller
     public function update($id,  Request $request){        
 
         $request->validate([
-            'nama' => 'required|max:255',
-            'nohp' => 'required|numeric|max:15',
-            'qty' => 'required|numeric',
-            'jenis' => 'required|in:reguler,express|not_in:0',
+            'nama'    => 'required|max:255',
+            'nohp'    => 'required|numeric|max:15',
+            'qty'     => 'required|numeric',
+            'jenis'   => 'required|in:reguler,express|not_in:0',
             'tanggal' => 'required',
-            'jasa' => 'required',
-            'total' => 'required|numeric',
+            'jasa'    => 'required',
+            'total'   => 'required|numeric',
            ]);
 
            DB::table('data')->where('id', $id)->update([
-            'nama' => $request['nama'],
-            'nohp' => $request['nohp'],
-            'qty' => $request['qty'],
-            'jenis' => $request['jenis'],
+            'nama'    => $request['nama'],
+            'nohp'    => $request['nohp'],
+            'qty'     => $request['qty'],
+            'jenis'   => $request['jenis'],
             'tanggal' => $request['tanggal'],
-            'jasa' => $request['jasa'],
-            'total' => $request['total']
+            'jasa'    => $request['jasa'],
+            'total'   => $request['total']
            ]);
 
            return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
@@ -235,9 +238,9 @@ class DataLaundryController extends Controller
     public function laporanHarian(){ 
 
         $berat = DB::table('data')
-                    ->sum('berat');
+                ->sum('qty');
         $uang = DB::table('data')
-                    ->sum('total');
+                ->sum('total');
             
 
         return view('laporan/laporan-harian', compact('berat','uang'));
@@ -253,18 +256,18 @@ class DataLaundryController extends Controller
                 ->get();
 
         return datatables()
-            ->of($laporan)
-            ->addIndexColumn()
-            ->make(true);                      
+                ->of($laporan)
+                ->addIndexColumn()
+                ->make(true);                      
     }
 
     public function laporanBulanan(){
         $berat = DB::table('data')
-                    ->sum('berat');
+                    ->sum('qty');
         $uang = DB::table('data')
                     ->sum('total');
 
-                    return view('laporan.laporan-bulanan', compact('berat','uang'));
+        return view('laporan.laporan-bulanan', compact('berat','uang'));
     }
 
     public function laporanBulananJson(){
@@ -275,7 +278,7 @@ class DataLaundryController extends Controller
                     ->whereYear('tanggal',Carbon::now()->month())
                     ->get();
 
-            return datatables()
+        return datatables()
             ->of($laporan)
             ->addIndexColumn()
             ->make(true);

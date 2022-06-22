@@ -17,7 +17,7 @@ class CreateDataTable extends Migration
             $table->id('id');
             $table->string('nama');
             $table->string('nohp')->nullable();
-            $table->integer('qty');
+            $table->float('qty');
             $table->string('tanggal');
             $table->string('jenis');
             $table->integer('total');
