@@ -59,7 +59,7 @@
           {data: 'DT_RowIndex', searchable: false, sortable: false},
           {data: 'nama'},
           {data: 'tanggal'},
-          {data: 'berat'},
+          {data: 'qty'},
           {data: 'total'},
           // {data: 'aksi', searchable: false, sortable: false}
         ]
