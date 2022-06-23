@@ -23,13 +23,13 @@
                                 <input type="text" class="form-control" name="nama" id="nama" value="{{ $detail->nama }}" required disabled>
                             </div>
                             <div class="mb-3">
-                                <label for="berat">Berat</label>
-                                <input type="text" name="berat" class="form-control" id="berat" value="{{ $detail->berat }}Kg" disabled>
+                                <label for="qty">Qty</label>
+                                <input type="text" name="qty" class="form-control" id="qty" value="{{ $detail->qty }}Kg" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
                                 <input type="date" name="tanggal" class="form-control" id="tanggal" value="{{ $detail->tanggal }}" disabled>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="col">
                             <div class="mb-3">
@@ -38,19 +38,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="jenis">Jenis</label>
-                                    <input type="text" class="form-control" name="jenis" id="jenis" value="{{ $detail->jenis }}" disabled>
+                                <input type="text" class="form-control" name="jenis" id="jenis" value="{{ $detail->jenis }}" disabled>
                             </div>
-                            <div class="mb-3">
-                                <label for="jasa">Jasa Laundry</label>
-                                <input type="text" class="form-control" name="jasa" id="jasa" value="{{ $detail->jasa }}" disabled>
-                            </div>
+                            <div class="mb-3 mx-auto">
+                                <label for="harga">Total Harga</label>
+                                <input type="text" name="total" class="form-control" value="Rp {{ format_uang($detail->total) }}" disabled>
+                                <input type="text" name="total" class="form-control" value="{{ $detail->total }}" hidden>
+                            </div>                            
                         </div>
-                    </div>
-                    <div class="mb-3 mx-auto">
-                        <label for="harga">Total Harga</label>
-                        <input type="text" name="total" class="form-control" value="Rp {{ format_uang($detail->total) }}" disabled>
-                        <input type="text" name="total" class="form-control" value="{{ $detail->total }}" hidden>
-                    </div>
+                    </div>                    
                     @if($detail->status_pembayaran == 'belum lunas')
                         <div class="mb-3 mx-auto">
                             <label for="bayar">Bayar</label>

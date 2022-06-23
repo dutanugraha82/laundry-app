@@ -20,9 +20,9 @@
                         @enderror
                      </div>
                      <div class="mb-3">
-                        <label for="berat">Berat</label>
-                        <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat" value="{{ $edit->berat }}">
-                        @error('berat')
+                        <label for="qty">Qty</label>
+                        <input type="text" name="qty" class="form-control @error('qty') is-invalid @enderror" id="qty" value="{{ $edit->qty }}">
+                        @error('qty')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                      </div>
@@ -32,14 +32,7 @@
                         @error('tanggal')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
-                     </div>
-                     <div class="mb-3">
-                        <label for="harga">Total Harga</label>
-                        <input type="text" name="total" class="form-control @error('total') is-invalid @enderror" value="{{ $edit->total }}">
-                        @error('total')
-                            <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
-                        @enderror
-                    </div>
+                    </div>                     
                 </div>
                 <div class="col">
                     <div class="mb-3">
@@ -49,18 +42,11 @@
                     <div class="mb-3">
                         <label for="jenis">Jenis</label>
                         <select name="jenis" id="jenis" class="form-control" required>
-                            <option @if($edit->jenis == 'reguler') selected @endif value="reguler">Reguler</option>
-                            <option @if($edit->jenis == 'express') selected @endif value="express">Express</option>
+                            @foreach ($dataNamaJenis as $data)
+                                <option {{ $data->nama_jenis == $edit->jenis ? 'selected' : '' }} value="{{$data->nama_jenis}}">{{ $data->nama_jenis }}</option>
+                            @endforeach                            
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="jasa">Jasa Laundry</label>
-                        <select name="jasa" id="jasa" class="form-control" required>
-                            <option @if($edit->jenis == 'setrika') selected @endif value="Setrika">Setrika</option>
-                            <option @if($edit->jenis == 'cuci') selected @endif value="Cuci">Cuci</option>
-                            <option @if($edit->jenis == 'cuci dan setrika') selected @endif value="Cuci dan Setrika">Cuci dan Setrika</option>
-                        </select>
-                    </div>
+                    </div>                    
                 </div>                    
             </div>
             <div class="my-3">

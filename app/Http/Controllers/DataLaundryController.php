@@ -92,6 +92,7 @@ class DataLaundryController extends Controller
                             ->where('status','selesai')
                             ->where('status_pembayaran','lunas')
                             ->get();
+                            
         return view('data.transaksi-keluar', compact('transaksiKeluar'));
     }
 
@@ -120,8 +121,7 @@ class DataLaundryController extends Controller
             'nohp'    => 'required|numeric|digits_between:12,15',
             'qty'     => 'required|numeric',
             'jenis'   => 'required|not_in:0',
-            'tanggal' => 'required',
-            'jasa'    => 'required',            
+            'tanggal' => 'required',      
        ]);
 
        DB::table('data')->insert([
@@ -140,7 +140,9 @@ class DataLaundryController extends Controller
 
     // View detail customer
     public function detail($id){
+
         $detail = DB::table('data')->where('id', $id)->first();
+        
         return view('data.detail', compact('detail'));
     }
 
@@ -190,21 +192,30 @@ class DataLaundryController extends Controller
 
     public function edit($id){
 
+        $dataNamaJenis = DB::table('jenis')
+                            ->select('*')                            
+                            ->get();
+
         $edit = DB::table('data')->where('id', $id)->first();
 
-        return view('data.edit', compact('edit'));
+        return view('data.edit', compact('edit','dataNamaJenis'));
     }
 
     public function update($id,  Request $request){        
 
+        $total = DB::table('jenis')
+                ->select('harga')
+                ->where('nama_jenis',$request->jenis)
+                ->first();        
+
+        $subtotal = floatval($request->qty) * intval($total->harga);        
+
         $request->validate([
             'nama'    => 'required|max:255',
-            'nohp'    => 'required|numeric|max:15',
+            'nohp'    => 'required|numeric|digits_between:12,15',
             'qty'     => 'required|numeric',
-            'jenis'   => 'required|in:reguler,express|not_in:0',
+            'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',
-            'jasa'    => 'required',
-            'total'   => 'required|numeric',
            ]);
 
            DB::table('data')->where('id', $id)->update([
@@ -213,8 +224,7 @@ class DataLaundryController extends Controller
             'qty'     => $request['qty'],
             'jenis'   => $request['jenis'],
             'tanggal' => $request['tanggal'],
-            'jasa'    => $request['jasa'],
-            'total'   => $request['total']
+            'total' => $subtotal,
            ]);
 
            return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
