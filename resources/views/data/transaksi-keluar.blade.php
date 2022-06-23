@@ -54,10 +54,9 @@
           {data: 'DT_RowIndex', searchable: false, sortable: false},
           {data: 'nama'},
           {data: 'nohp'},
-          {data: 'berat'},
+          {data: 'qty'},
           {data: 'jenis'},
           {data: 'tanggal'},
-          {data: 'jasa'},
           {data: 'status'},
           {data: 'status_pembayaran'},
           {data: 'aksi', searchable: false, sortable: false}

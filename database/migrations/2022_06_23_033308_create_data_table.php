@@ -20,7 +20,7 @@ class CreateDataTable extends Migration
             $table->float('qty');
             $table->string('tanggal');
             $table->string('jenis');
-            $table->integer('total');
+            $table->string('total');
             $table->string('status');
             $table->string('status_pembayaran');
             $table->softDeletes();

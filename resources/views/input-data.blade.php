@@ -56,13 +56,13 @@
                             </div>                            
                             <div class="mb-3">
                                 <!-- <label for="status">Status</label> -->
-                                <input type="text" name="status" class="form-control" name="status" value="proses" hidden>
+                                <input type="text" name="status" class="form-control" value="" hidden>
                             </div>
                         </div>                    
                     </div>
                     <div class="mb-3">
                         <!-- <label for="status-pembayaran">Status Pembayaran</label> -->
-                        <input type="text" class="form-control" name="status_pembayaran" value="belum lunas" hidden>
+                        <input type="text" class="form-control" name="status_pembayaran" value="" hidden>
                     </div>
                     <div class="my-3">
                         <button type="submit" class="btn btn-primary">Submit Data Laundry</button>

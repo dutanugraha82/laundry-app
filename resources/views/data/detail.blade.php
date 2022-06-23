@@ -23,8 +23,8 @@
                                 <input type="text" class="form-control" name="nama" id="nama" value="{{ $detail->nama }}" required disabled>
                             </div>
                             <div class="mb-3">
-                                <label for="berat">Berat</label>
-                                <input type="text" name="berat" class="form-control" id="berat" value="{{ $detail->berat }}Kg" disabled>
+                                <label for="qty">QTY</label>
+                                <input type="text" name="qty" class="form-control" id="qty" value="{{ $detail->qty }}Kg" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
@@ -39,10 +39,6 @@
                             <div class="mb-3">
                                 <label for="jenis">Jenis</label>
                                     <input type="text" class="form-control" name="jenis" id="jenis" value="{{ $detail->jenis }}" disabled>
-                            </div>
-                            <div class="mb-3">
-                                <label for="jasa">Jasa Laundry</label>
-                                <input type="text" class="form-control" name="jasa" id="jasa" value="{{ $detail->jasa }}" disabled>
                             </div>
                         </div>
                     </div>

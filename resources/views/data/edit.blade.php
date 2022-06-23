@@ -20,9 +20,9 @@
                         @enderror
                      </div>
                      <div class="mb-3">
-                        <label for="berat">Berat</label>
-                        <input type="text" name="berat" class="form-control @error('berat') is-invalid @enderror" id="berat" value="{{ $edit->berat }}">
-                        @error('berat')
+                        <label for="qty">QTY</label>
+                        <input type="text" name="qty" class="form-control @error('berat') is-invalid @enderror" id="qty" value="{{ $edit->berat }}">
+                        @error('qty')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                      </div>
@@ -51,14 +51,6 @@
                         <select name="jenis" id="jenis" class="form-control" required>
                             <option @if($edit->jenis == 'reguler') selected @endif value="reguler">Reguler</option>
                             <option @if($edit->jenis == 'express') selected @endif value="express">Express</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="jasa">Jasa Laundry</label>
-                        <select name="jasa" id="jasa" class="form-control" required>
-                            <option @if($edit->jenis == 'setrika') selected @endif value="Setrika">Setrika</option>
-                            <option @if($edit->jenis == 'cuci') selected @endif value="Cuci">Cuci</option>
-                            <option @if($edit->jenis == 'cuci dan setrika') selected @endif value="Cuci dan Setrika">Cuci dan Setrika</option>
                         </select>
                     </div>
                 </div>                    
