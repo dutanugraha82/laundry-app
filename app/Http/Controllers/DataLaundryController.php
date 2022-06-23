@@ -288,7 +288,7 @@ class DataLaundryController extends Controller
                     ->whereYear('tanggal',Carbon::now()->month())
                     ->get();
 
-        return datatables()git
+        return datatables()
             ->of($laporan)
             ->addIndexColumn()
             ->make(true);
