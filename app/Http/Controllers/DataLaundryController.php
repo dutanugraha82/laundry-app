@@ -287,10 +287,14 @@ class DataLaundryController extends Controller
 
     public function laporanBulanan(){
         $order = DB::table('data')
+                    ->whereMonth('tanggal', date('m'))
+                    ->whereYear('tanggal',date('Y'))
                     ->where('status','selesai')
                     ->where('status_pembayaran','lunas')
                     ->count('id');
         $uang = DB::table('data')
+                    ->whereMonth('tanggal', date('m'))
+                    ->whereYear('tanggal',date('Y'))
                     ->where('status','selesai')
                     ->where('status_pembayaran','lunas')
                     ->sum('total');
@@ -303,7 +307,8 @@ class DataLaundryController extends Controller
                     ->select('*')
                     ->where('status','selesai')
                     ->where('status_pembayaran','lunas')
-                    ->whereYear('tanggal',Carbon::now()->format('M'))
+                    ->whereMonth('tanggal', date('m'))
+                    ->whereYear('tanggal',date('Y'))
                     ->get();
 
         return datatables()
