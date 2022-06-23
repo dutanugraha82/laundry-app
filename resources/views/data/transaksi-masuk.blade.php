@@ -17,16 +17,14 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>No Hp</th>
-                  <th>Berat</th>
+                  <th>Qty</th>
                   <th>Jenis Laundry</th>
                   <th>Tanggal</th>
-                  <th>Jasa Laundry</th>
                   <th>Status laundry</th>
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </thead>
               </table>
-              </div>
             </div>
           </div>
         </div>
@@ -89,10 +87,9 @@
           {data: 'DT_RowIndex', searchable: false, sortable: false},
           {data: 'nama'},
           {data: 'nohp'},
-          {data: 'berat'},
+          {data: 'qty'},
           {data: 'jenis'},
           {data: 'tanggal'},
-          {data: 'jasa'},
           {data: 'status'},
           {data: 'status_pembayaran'},
           {data: 'aksi', searchable: false, sortable: false}

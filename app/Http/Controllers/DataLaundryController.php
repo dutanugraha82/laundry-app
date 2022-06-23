@@ -52,6 +52,7 @@ class DataLaundryController extends Controller
                         <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
                         <a href="/data/invoice/'.$data->id.'" class="btn btn-primary btn-sm">Invoice</a>
                         <a href="/list-data-laundry/proses/detail/'.$data->id.'/selesai" class="btn btn-outline-success btn-sm">Selesai</a>
+                        <a  target="_blank" href="/struk/'.$data->id.'" class="btn btn-default btn-sm"><i class="fas fa-print"></i>Print</a>                     
                     </div>
                     ';
                 })
@@ -76,6 +77,7 @@ class DataLaundryController extends Controller
                         <a href="/list-data-laundry/proses/detail/'.$data->id.'" class="btn btn-success btn-sm">Detail</a>                      
                         <a href="/data/'.$data->id.'"class="btn btn-danger btn-sm">Delete</a>
                         <a href="/data/invoice/'.$data->id.'" class="btn btn-primary btn-sm">Invoice</a>
+                        <a  target="_blank" href="/struk/'.$data->id.'" class="btn btn-default btn-sm"><i class="fas fa-print"></i>Print</a>                  
                     </div>
                     ';
                 })
@@ -281,6 +283,19 @@ class DataLaundryController extends Controller
             ->of($laporan)
             ->addIndexColumn()
             ->make(true);
+    }
+
+    public function struk($id){
+
+        $data = DB::table('data')
+                ->where('id', $id)
+                ->first();
+
+        $pesanan = DB::table('jenis')
+                 ->where('id',$id)
+                 ->first();
+
+        return view('struk', compact('data', 'pesanan'));
     }
 
 }

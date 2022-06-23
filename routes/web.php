@@ -71,6 +71,9 @@ Route::controller(DataLaundryController::class)->group(function(){
     //laporan Bulanan
     Route::get('/laporan-bulanan', 'laporanBulanan');
     Route::get('/laporan-bulanan/json', 'laporanBulananJson');
+
+    // Struk
+    Route::get('/struk/{id}','struk');
 });
 
 Route::controller(SampahCT::class)->group(function(){
