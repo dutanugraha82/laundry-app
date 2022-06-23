@@ -102,6 +102,7 @@ class DataLaundryController extends Controller
         $dataNamaJenis = DB::table('jenis')
                             ->select('*')
                             ->get();
+                // dd($dataNamaJenis);
 
         return view('input-data',compact('dataNamaJenis'));
     }
@@ -123,7 +124,6 @@ class DataLaundryController extends Controller
             'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',      
        ]);
-
        DB::table('data')->insert([
             'nama'              => $request->nama,
             'nohp'              => $request->nohp,
@@ -134,7 +134,6 @@ class DataLaundryController extends Controller
             'status'            => 'proses',
             'status_pembayaran' => 'belum lunas'
        ]);
-       
        return redirect('/list-data-transaksi/masuk')->with('sukses_input', 'Data berhasil ditambahkan!');
     }
 
@@ -289,7 +288,7 @@ class DataLaundryController extends Controller
                     ->whereYear('tanggal',Carbon::now()->month())
                     ->get();
 
-        return datatables()
+        return datatables()git
             ->of($laporan)
             ->addIndexColumn()
             ->make(true);
