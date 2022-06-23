@@ -247,13 +247,26 @@ class DataLaundryController extends Controller
 
     public function laporanHarian(){ 
 
-        $berat = DB::table('data')
-                ->sum('qty');
-        $uang = DB::table('data')
-                ->sum('total');
-            
+        $laporan = DB::table('data')
+                ->select('*')
+                ->where('status','selesai')
+                ->where('status_pembayaran','lunas')
+                ->whereDate('tanggal',Carbon::today())
+                ->get();
 
-        return view('laporan/laporan-harian', compact('berat','uang'));
+        $order = DB::table('data')
+                ->where('status_pembayaran','lunas')
+                ->where('status','selesai')
+                ->whereDate('tanggal',Carbon::today())
+                ->count('id');
+        $uang = DB::table('data')
+                ->where('status_pembayaran','lunas')
+                ->where('status','selesai')
+                ->whereDate('tanggal',Carbon::today())
+                ->sum('total');
+    
+
+        return view('laporan/laporan-harian', compact('order','uang','laporan'));
     }
 
     public function laporanHarianJson(){
@@ -265,6 +278,7 @@ class DataLaundryController extends Controller
                 ->whereDate('tanggal',Carbon::today())
                 ->get();
 
+
         return datatables()
                 ->of($laporan)
                 ->addIndexColumn()
@@ -272,12 +286,16 @@ class DataLaundryController extends Controller
     }
 
     public function laporanBulanan(){
-        $berat = DB::table('data')
-                    ->sum('qty');
+        $order = DB::table('data')
+                    ->where('status','selesai')
+                    ->where('status_pembayaran','lunas')
+                    ->count('id');
         $uang = DB::table('data')
+                    ->where('status','selesai')
+                    ->where('status_pembayaran','lunas')
                     ->sum('total');
 
-        return view('laporan.laporan-bulanan', compact('berat','uang'));
+        return view('laporan.laporan-bulanan', compact('order','uang'));
     }
 
     public function laporanBulananJson(){
@@ -285,7 +303,7 @@ class DataLaundryController extends Controller
                     ->select('*')
                     ->where('status','selesai')
                     ->where('status_pembayaran','lunas')
-                    ->whereYear('tanggal',Carbon::now()->month())
+                    ->whereYear('tanggal',Carbon::now()->format('M'))
                     ->get();
 
         return datatables()

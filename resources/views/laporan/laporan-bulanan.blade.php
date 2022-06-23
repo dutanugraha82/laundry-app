@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col">
             <div class="mb-3">
-              <h4>Total Berat : {{ $berat }} Kg</h4>
+              <h4>Total Transaksi : {{ $order }} </h4>
             </div>
           </div>
           <div class="col">
