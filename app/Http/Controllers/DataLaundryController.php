@@ -110,6 +110,8 @@ class DataLaundryController extends Controller
     // Store or insert data to Database
     public function store(Request $request){
 
+        dd($request);
+
         $total = DB::table('jenis')
                 ->select('harga')
                 ->where('nama_jenis',$request->jenis)

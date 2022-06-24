@@ -22,7 +22,7 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>No Hp</th>
-                  <th>Berat</th>
+                  <th>Qty</th>
                   <th>Jenis Laundry</th>
                   <th>Status laundry</th>
                   <th>Status Pembayaran</th>
@@ -98,7 +98,7 @@
           {data: 'DT_RowIndex', searchable: false, sortable: false},
           {data: 'nama'},
           {data: 'nohp'},
-          {data: 'berat'},
+          {data: 'qty'},
           {data: 'jenis'},
           {data: 'status'},
           {data: 'status_pembayaran'},
