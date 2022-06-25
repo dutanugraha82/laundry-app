@@ -13,8 +13,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="id_transaksi">Id Transaksi</label>
-                                <input type="text" class="form-control" name="id_transaksi" id="id_transaksi" value="{{$auto_number}}" readonly>
+                                <label for="no_transaksi">Nomor Transaksi</label>
+                                <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" value="{{ $auto_number }}" readonly>
                             </div>
                         </div>
                         <div class="col">

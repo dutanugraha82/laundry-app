@@ -172,7 +172,7 @@
           </table>
         </div><!--End Table-->
         <div id="legalcopy">
-          <p class="legal" style="margin-bottom : 100px;"><strong>Terimakasih Telah Berbelanja! :)</strong></p>
+          <p class="legal" style="margin-bottom : 100px;"><strong>Terimakasih telah menggunakan jasa kami! :)</strong></p>
         </div>
       </div><!--End InvoiceBot-->
     </div><!--End Invoice--> 

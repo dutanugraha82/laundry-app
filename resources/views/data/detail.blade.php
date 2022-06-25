@@ -24,7 +24,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="qty">Qty</label>
-                                <input type="text" name="qty" class="form-control" id="qty" value="{{ $detail->qty }}Kg" disabled>
+                                <input type="text" name="qty" class="form-control" id="qty" value="{{ $detail->qty }} {{  $satuan->satuan }}" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
