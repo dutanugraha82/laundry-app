@@ -13,8 +13,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="no_transaksi">Nomor Transaksi</label>
-                                <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" value="{{$auto_number}}" readonly>
+                                <label for="id_transaksi">Id Transaksi</label>
+                                <input type="text" class="form-control" name="id_transaksi" id="id_transaksi" value="{{$auto_number}}" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -90,7 +90,7 @@
 </div>
 <div class="container text-center">
     <a href="/" class="btn btn-outline-warning btn-back shadow"><b>Kembali</b></a>
-  </div>
+</div>
 @endsection
 
 @push('script')
@@ -130,7 +130,7 @@
         
         $('#rowRoot').append(html);
     });
-   
+
     // remove row
     $(document).on('click', '#deleteRowInput', function () {
         $(this).closest('#rowInputAdd').remove();
