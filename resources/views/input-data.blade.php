@@ -14,7 +14,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="no_transaksi">Nomor Transaksi</label>
-                                <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" value="001" readonly>
+                                <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" value="{{$auto_number}}" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -106,7 +106,7 @@
         html += '<div class="col">';
         html += '<div class="mb-3">';
         html += '<label for="jenis">jenis Laundry</label>';
-        html += '<select name="jenis[]" id="jenis" class="form-control @error('jenis') is-invalid @enderror" required>'
+        html += '<select name="jenis[]" id="jenis" class="form-control @error("jenis") is-invalid @enderror" required>'
         html += '<option value="">--Pilih jenis Laundry--</option> ';
         html += '@foreach ($dataNamaJenis as $data)';
         html += '<option value="{{$data->nama_jenis}}">{{ $data->nama_jenis }}</option>';
