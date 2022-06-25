@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="removeRow">
+                    <div class="row" id="hapusRow">
                         <div class="col" id="col1"></div>
                         <div class="col" id="col2"></div>
                     </div>
@@ -81,9 +81,9 @@
                             <div class="mb-3">                                
                                 <input type="text" class="form-control" name="status_pembayaran" value="" hidden>
                             </div>
-                            <div class="my-3">
+                            <div class="my-3" id="button-group">
                                 <button type="submit" class="btn btn-primary">Submit Data Laundry</button>
-                                <button id="addRow" type="button" class="btn btn-success">Tambah barang</button>
+                                <button id="addRow" type="button" class="btn btn-success">Tambah barang</button>                                                                
                             </div>
                         </div>
                     </div>
@@ -129,15 +129,15 @@
         html += '@error("qty")';
         html += '<span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>';
         html += '@enderror';
-        html += '<a id="removeRow" type="submit" style="color: red;">- Hapus Row</a>';
+        // html += '<a id="btnRemoveRow" type="submit" style="color: red;">- Hapus Row</a>';
         html += '</div>';
 
         $('#col2').append(html);
     });    
 
     // remove row
-    $(document).on('click', '#removeRow', function () {
-        $('#removeRow').remove();
+    $(document).on('click', '#bntRemoveRow', function () {
+        $('#hapusRow').remove();
     });
 </script>
-@endpush
+@endpushgit ad
