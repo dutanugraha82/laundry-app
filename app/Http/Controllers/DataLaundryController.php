@@ -238,18 +238,18 @@ class DataLaundryController extends Controller
             'qty'     => 'required|numeric',
             'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',
-           ]);
+        ]);
 
-           DB::table('data')->where('id', $id)->update([
+        DB::table('data')->where('id', $id)->update([
             'nama'    => $request['nama'],
             'nohp'    => $request['nohp'],
             'qty'     => $request['qty'],
             'jenis'   => $request['jenis'],
             'tanggal' => $request['tanggal'],
             'total' => $subtotal,
-           ]);
+        ]);
 
-           return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
+        return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
 
     }    
 
@@ -347,10 +347,10 @@ class DataLaundryController extends Controller
                 ->first();
 
         $pesanan = DB::table('jenis')
-                 ->where('id',$id)
-                 ->first();
+                ->where('id',$id)
+                ->first();
 
         return view('struk', compact('data', 'pesanan'));
-    }
+    }    
 
 }
