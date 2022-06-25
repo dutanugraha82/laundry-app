@@ -129,15 +129,15 @@
         html += '@error("qty")';
         html += '<span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>';
         html += '@enderror';
-        // html += '<a id="btnRemoveRow" type="submit" style="color: red;">- Hapus Row</a>';
+        html += '<a id="btnRemoveRow" type="submit" style="color: red;">- Hapus Row</a>';
         html += '</div>';
 
         $('#col2').append(html);
     });    
 
     // remove row
-    $(document).on('click', '#bntRemoveRow', function () {
-        $('#hapusRow').remove();
+    $(document).on('click', '#btnRemoveRow', function () {
+        $(this).closest('#hapusRow').remove();
     });
 </script>
-@endpushgit ad
+@endpush
