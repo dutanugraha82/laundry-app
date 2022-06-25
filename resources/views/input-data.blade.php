@@ -72,10 +72,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row" id="removeRow">
-                        <div class="col" id="col1"></div>
-                        <div class="col" id="col2"></div>
-                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col">
@@ -109,15 +105,25 @@
         html += '<div class="row" id="rowInputAdd">';
         html += '<div class="col">';
         html += '<div class="mb-3">';
-        html += '<label for="no_transaksi">Nomor Transaksi</label>';
-        html += '<input type="text" class="form-control" name="no_transaksi" id="no_transaksi" value="001" readonly>'
+        html += '<label for="jenis">jenis Laundry</label>';
+        html += '<select name="jenis[]" id="jenis" class="form-control @error('jenis') is-invalid @enderror" required>'
+        html += '<option value="">--Pilih jenis Laundry--</option> ';
+        html += '@foreach ($dataNamaJenis as $data)';
+        html += '<option value="{{$data->nama_jenis}}">{{ $data->nama_jenis }}</option>';
+        html += '@endforeach';
+        html += '</select>';
         html += '</div>';
         html += '</div>';
+        // 
         html += '<div class="col">';
         html += '<div class="mb-3">';
-        html += '<label for="nohp">No Hp</label>';
-        html += '<input type="text" class="form-control @error("nohp") is-invalid @enderror" name="nohp" id="nohp" value="{{ old("nohp") }}">';
-        html += '<a type="button" id="deleteRowInput"> - Hapus Row Input</a>';
+        html += '<label for="qty">Qty <span style="color: red; font-size: 12px; font-weight: normal;" >(*Kg *Meter *Pasang *Pcs)</span></label>';
+        html += '<div class="input-group">';
+        html += '<input type="text" name="qty[]" class="form-control @error("qty") is-invalid @enderror" id="qty" value="{{ old("qty") }}">';
+        html += '<div class="input-group-append">';
+        html += '<span class="btn btn-danger" id="deleteRowInput"><i class="fas fa-trash"></i></span>';       
+        html += '</div>';          
+        html += '</div>';          
         html += '</div>';          
         html += '</div>';          
         html += '</div>';           
