@@ -129,8 +129,8 @@
         html += '@error("qty")';
         html += '<span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>';
         html += '@enderror';
-        html += '<a id="removeRow" type="submit" style="color: red;">- Hapus Row</a>';
         html += '</div>';
+        html += '<a id="removeRow" type="submit" style="color: red;">- Hapus Row</a>';
 
         $('#col2').append(html);
     });    
