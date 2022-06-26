@@ -17,13 +17,14 @@ class DataLaundryController extends Controller
     // View index or dashboard page
     public function index() {
 
+
         $transaksiMasuk = Data::where('status','proses')
-                          ->where('status_pembayaran','belum lunas')
-                          ->count();
+                            ->where('status_pembayaran','belum lunas')
+                            ->count();
 
         $transaksiKeluar = Data::where('status','selesai')
-                           ->where('status_pembayaran','lunas')
-                           ->count();
+                            ->where('status_pembayaran','lunas')
+                            ->count();
         
         return view('dashboard/dashboard', ['transaksiMasuk' => $transaksiMasuk, 'transaksiKeluar' => $transaksiKeluar]);
     }
@@ -98,13 +99,23 @@ class DataLaundryController extends Controller
 
     // View form input data laundry
     public function insert(){
+        
+        // get data id from table data
+        $table_no = DB::table('data')->select('id')->get();
+
+        // ambil data tanggal
+        $tgl = date('dmY');
+        
+        $no = $tgl.$table_no;
+        $auto = substr($no,8);
+        $auto = intval($auto)+1;
+        $auto_number = "T".substr($no,0,8).str_repeat(0,(4-strlen($auto))).$auto;
 
         $dataNamaJenis = DB::table('jenis')
                             ->select('*')
                             ->get();
-                // dd($dataNamaJenis);
 
-        return view('input-data',compact('dataNamaJenis'));
+        return view('input-data',compact('dataNamaJenis', 'auto_number'));
     }
 
     // Store or insert data to Database
@@ -125,8 +136,8 @@ class DataLaundryController extends Controller
             'qty'     => 'required|numeric',
             'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',      
-       ]);
-       DB::table('data')->insert([
+        ]);
+        DB::table('data')->insert([
             'nama'              => $request->nama,
             'nohp'              => $request->nohp,
             'qty'               => $request->qty,
@@ -135,8 +146,8 @@ class DataLaundryController extends Controller
             'total'             => $subtotal,
             'status'            => 'proses',
             'status_pembayaran' => 'belum lunas'
-       ]);
-       return redirect('/list-data-transaksi/masuk')->with('sukses_input', 'Data berhasil ditambahkan!');
+        ]);
+        return redirect('/list-data-transaksi/masuk')->with('sukses_input', 'Data berhasil ditambahkan!');
     }
 
     // View detail customer
@@ -152,7 +163,7 @@ class DataLaundryController extends Controller
 
         $request->validate([
             'bayar' => 'required|numeric',
-           ]);
+        ]);
 
         if (intval($request->total) <= intval($request->bayar)) {
             
@@ -217,18 +228,18 @@ class DataLaundryController extends Controller
             'qty'     => 'required|numeric',
             'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',
-           ]);
+        ]);
 
-           DB::table('data')->where('id', $id)->update([
+        DB::table('data')->where('id', $id)->update([
             'nama'    => $request['nama'],
             'nohp'    => $request['nohp'],
             'qty'     => $request['qty'],
             'jenis'   => $request['jenis'],
             'tanggal' => $request['tanggal'],
             'total' => $subtotal,
-           ]);
+        ]);
 
-           return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
+        return redirect('/list-data-transaksi/masuk')->with('update_success','Data berhasil dirubah!');           
 
     }    
 
@@ -326,8 +337,8 @@ class DataLaundryController extends Controller
                 ->first();
 
         $pesanan = DB::table('jenis')
-                 ->where('id',$id)
-                 ->first();
+                    ->where('id',$id)
+                    ->first();
 
         return view('struk', compact('data', 'pesanan'));
     }
