@@ -17,14 +17,13 @@ class DataLaundryController extends Controller
     // View index or dashboard page
     public function index() {
 
-
         $transaksiMasuk = Data::where('status','proses')
-                            ->where('status_pembayaran','belum lunas')
-                            ->count();
+                        ->where('status_pembayaran','belum lunas')
+                        ->count();
 
         $transaksiKeluar = Data::where('status','selesai')
-                            ->where('status_pembayaran','lunas')
-                            ->count();
+                        ->where('status_pembayaran','lunas')
+                        ->count();
         
         return view('dashboard/dashboard', ['transaksiMasuk' => $transaksiMasuk, 'transaksiKeluar' => $transaksiKeluar]);
     }
@@ -99,54 +98,63 @@ class DataLaundryController extends Controller
 
     // View form input data laundry
     public function insert(){
-        
-        // get data id from table data
-        $table_no = DB::table('data')->select('id')->get();
+    
+        // get and count data id from table data
+        $table_no = DB::table('data')->select('id')->count();        
 
         // ambil data tanggal
         $tgl = date('dmY');
-        
+
         $no = $tgl.$table_no;
         $auto = substr($no,8);
         $auto = intval($auto)+1;
-        $auto_number = "T".substr($no,0,8).str_repeat(0,(4-strlen($auto))).$auto;
+
+        // transaction auto code
+        $auto_number = "T".substr($no,0,8).str_repeat(0,(3-strlen($auto))).$auto;
 
         $dataNamaJenis = DB::table('jenis')
                             ->select('*')
                             ->get();
-
         return view('input-data',compact('dataNamaJenis', 'auto_number'));
     }
 
     // Store or insert data to Database
-    public function store(Request $request){
+    public function store(Request $request){        
 
-        dd($request);
-
-        $total = DB::table('jenis')
-                ->select('harga')
-                ->where('nama_jenis',$request->jenis)
-                ->first();
-                
-        $subtotal = floatval($request->qty) * intval($total->harga);
-
+        
         $request->validate([
             'nama'    => 'required|max:255',
-            'nohp'    => 'required|numeric|digits_between:12,15',
-            'qty'     => 'required|numeric',
+            'nohp'    => 'numeric|digits_between:12,15',
+            'qty'     => 'required',
             'jenis'   => 'required|not_in:0',
-            'tanggal' => 'required',      
-        ]);
-        DB::table('data')->insert([
-            'nama'              => $request->nama,
-            'nohp'              => $request->nohp,
-            'qty'               => $request->qty,
-            'jenis'             => $request->jenis,   
-            'tanggal'           => $request->tanggal,
-            'total'             => $subtotal,
-            'status'            => 'proses',
-            'status_pembayaran' => 'belum lunas'
-        ]);
+            'tanggal' => 'required',
+        ]);        
+        
+        foreach($request->jenis as $key => $insert){
+
+            $total = DB::table('jenis')
+                        ->select('harga')
+                        ->where('nama_jenis',$request->jenis[$key])
+                        ->first();
+            
+            $subtotal = floatval($request->qty[$key]) * intval($total->harga);
+
+            $saveRecord = [
+                'no_transaksi'      => $request->no_transaksi,
+                'nama'              => $request->nama,
+                'nohp'              => $request->nohp,
+                'qty'               => $request->qty[$key],
+                'jenis'             => $request->jenis[$key],   
+                'tanggal'           => $request->tanggal,
+                'total'             => $subtotal,
+                'status'            => 'proses',
+                'status_pembayaran' => 'belum lunas'
+            ];
+
+            
+            DB::table('data')->insert($saveRecord);
+        }
+
         return redirect('/list-data-transaksi/masuk')->with('sukses_input', 'Data berhasil ditambahkan!');
     }
 
@@ -154,8 +162,10 @@ class DataLaundryController extends Controller
     public function detail($id){
 
         $detail = DB::table('data')->where('id', $id)->first();
+
+        $satuan = DB::table('jenis')->where('nama_jenis',$detail->jenis)->first();
         
-        return view('data.detail', compact('detail'));
+        return view('data.detail', compact('detail','satuan'));
     }
 
     // Update status pembayaran ketika customer bayar
@@ -224,7 +234,7 @@ class DataLaundryController extends Controller
 
         $request->validate([
             'nama'    => 'required|max:255',
-            'nohp'    => 'required|numeric|digits_between:12,15',
+            'nohp'    => 'numeric|digits_between:12,15',
             'qty'     => 'required|numeric',
             'jenis'   => 'required|not_in:0',
             'tanggal' => 'required',
@@ -337,10 +347,10 @@ class DataLaundryController extends Controller
                 ->first();
 
         $pesanan = DB::table('jenis')
-                    ->where('id',$id)
-                    ->first();
+                ->where('id',$id)
+                ->first();
 
         return view('struk', compact('data', 'pesanan'));
-    }
+    }    
 
 }

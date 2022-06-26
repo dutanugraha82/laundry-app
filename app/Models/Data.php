@@ -13,5 +13,5 @@ class Data extends Model
 
     protected $table = 'data';
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];    
 }
