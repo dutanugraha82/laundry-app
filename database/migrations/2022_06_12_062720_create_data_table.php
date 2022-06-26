@@ -13,6 +13,7 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('data', function (Blueprint $table) {
             $table->id('id');
             $table->string('no_transaksi');
