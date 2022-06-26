@@ -12,9 +12,9 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Tanggal</th>
             <th>Nama</th>
-            <th>Berat</th>
+            <th>Tanggal</th>
+            <th>QTY</th>
             <th>Total Harga</th>
           </tr>
         </thead>      

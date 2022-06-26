@@ -12,8 +12,8 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Tanggal</th>
             <th>Nama</th>
+            <th>Tanggal</th>
             <th>QTY</th>
             <th>Total Harga</th>
           </tr>

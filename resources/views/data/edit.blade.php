@@ -18,14 +18,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama">Nama Customer</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ $edit->nama }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ $edit->nama }}" required>
                         @error('nama')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="qty">Qty</label>
-                        <input type="text" name="qty" class="form-control @error('qty') is-invalid @enderror" id="qty" value="{{ $edit->qty }}">
+                        <input type="text" name="qty" class="form-control @error('qty') is-invalid @enderror" id="qty" value="{{ $edit->qty }}" required>
                         @error('qty')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror
@@ -46,7 +46,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal">Tanggal</label>
-                        <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ $edit->tanggal }}">
+                        <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ $edit->tanggal }}" required>
                         @error('tanggal')
                             <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                         @enderror

@@ -31,7 +31,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="nama">Nama Customer</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ old('nama') }}" autofocus>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" value="{{ old('nama') }}" autofocus required>
                                 @error('nama')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -40,7 +40,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="tanggal">Tanggal</label>
-                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ old('tanggal') }}">
+                                <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" value="{{ old('tanggal') }}" required>
                                 @error('tanggal')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
@@ -65,7 +65,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="qty">Qty <span style="color: red; font-size: 12px; font-weight: normal;" >(*Kg *Meter *Pasang *Pcs)</span></label>
-                                <input type="text" name="qty[]" class="form-control @error('qty') is-invalid @enderror" id="qty" value="{{ old('qty') }}">
+                                <input type="text" name="qty[]" class="form-control @error('qty') is-invalid @enderror" id="qty" value="{{ old('qty') }}" required>
                                 @error('qty')
                                     <span id="exampleInputEmail1-error" class="error invalid-feedback">{{$message}}</span>
                                 @enderror
